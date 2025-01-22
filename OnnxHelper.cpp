@@ -11,14 +11,125 @@ namespace AIModelLoader {
 	{
 	}
 
-	int OnnxHelper::test_detect_opencv()
+	int OnnxHelper::yolov5_detect()
 	{
 		// reference: ultralytics/examples/YOLOv8-CPP-Inference
 		namespace fs = std::filesystem;
 
-		auto net = cv::dnn::readNetFromONNX(onnx_file);
+		auto net = cv::dnn::readNetFromONNX(v5_onnx_file);
 		if (net.empty()) {
-			std::cerr << "Error: there are no layers in the network: " << onnx_file << std::endl;
+			std::cerr << "Error: there are no layers in the network: " << v5_onnx_file << std::endl;
+			return -1;
+		}
+
+		if (cuda_enabled) {
+			net.setPreferableBackend(cv::dnn::DNN_BACKEND_CUDA);
+			net.setPreferableTarget(cv::dnn::DNN_TARGET_CUDA);
+		}
+		else {
+			net.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
+			net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
+		}
+
+		if (!fs::exists(result_dir)) {
+			fs::create_directories(result_dir);
+		}
+
+		auto classes = parse_classes_file(classes_file);
+		if (classes.size() == 0) {
+			std::cerr << "Error: fail to parse classes file: " << classes_file << std::endl;
+			return -1;
+		}
+
+		std::cout << "classes: ";
+		for (const auto& val : classes) {
+			std::cout << val << " ";
+		}
+		std::cout << std::endl;
+
+		for (const auto& [key, val] : get_dir_images(images_dir)) {
+			cv::Mat frame = cv::imread(val, cv::IMREAD_COLOR);
+			if (frame.empty()) {
+				std::cerr << "Warning: unable to load image: " << val << std::endl;
+				continue;
+			}
+
+			cv::Mat bgr = modify_image_size(frame);
+
+			cv::Mat blob;
+			cv::dnn::blobFromImage(bgr, blob, 1.0 / 255.0, cv::Size(image_size[1], image_size[0]), cv::Scalar(), true, false);
+			net.setInput(blob);
+
+			std::vector<cv::Mat> outputs;
+			net.forward(outputs, net.getUnconnectedOutLayersNames());
+
+			// 获取输出的维度信息
+			int rows = outputs[0].size[1]; // 每个预测框的总数（25200）
+			int dimensions = outputs[0].size[2]; // 每个预测框的维度（num_classes + 5）
+
+			float* data = (float*)outputs[0].data; // 获取模型输出的原始数据
+			float x_factor = bgr.cols * 1.f / image_size[1]; // 缩放因子，用于将边界框坐标映射回原始图像
+			float y_factor = bgr.rows * 1.f / image_size[0];
+
+			std::vector<int> class_ids;
+			std::vector<float> confidences;
+			std::vector<cv::Rect> boxes;
+
+			for (auto i = 0; i < rows; ++i) {
+				float* row_data = data + i * dimensions; // 当前行的起始位置
+
+				float confidence = row_data[4]; // 第5个值是置信度
+				if (confidence > model_score_threshold) { // 置信度大于阈值
+					cv::Mat scores(1, classes.size(), CV_32FC1, row_data + 5); // 类别分数从第6个值开始
+					cv::Point class_id;
+					double max_class_score;
+
+					cv::minMaxLoc(scores, 0, &max_class_score, 0, &class_id); // 找到最大类别分数及其索引
+
+					if (max_class_score > model_score_threshold) { // 类别分数大于阈值
+						confidences.push_back(confidence * max_class_score); // 综合置信度和类别分数
+						class_ids.push_back(class_id.x);
+
+						float x = row_data[0];
+						float y = row_data[1];
+						float w = row_data[2];
+						float h = row_data[3];
+
+						int left = int((x - 0.5 * w) * x_factor);
+						int top = int((y - 0.5 * h) * y_factor);
+						int width = int(w * x_factor);
+						int height = int(h * y_factor);
+
+						boxes.push_back(cv::Rect(left, top, width, height));
+					}
+				}
+			}
+
+			std::vector<int> nms_result;
+			cv::dnn::NMSBoxes(boxes, confidences, model_score_threshold, model_nms_threshold, nms_result);
+
+			std::vector<int> ids;
+			std::vector<float> confs;
+			std::vector<cv::Rect> rects;
+			for (size_t i = 0; i < nms_result.size(); ++i) {
+				ids.emplace_back(class_ids[nms_result[i]]);
+				confs.emplace_back(confidences[nms_result[i]]);
+				rects.emplace_back(boxes[nms_result[i]]);
+			}
+			draw_boxes(classes, ids, confs, rects, key, frame);
+		}
+
+		return 0;
+	}
+
+	int OnnxHelper::yolov8_detect()
+	{
+		// reference: ultralytics/examples/YOLOv8-CPP-Inference
+		namespace fs = std::filesystem;
+
+		auto net = cv::dnn::readNetFromONNX(v8_onnx_file);
+		if (net.empty()) {
+			std::cerr << "Error: there are no layers in the network: " << v8_onnx_file << std::endl;
 			return -1;
 		}
 

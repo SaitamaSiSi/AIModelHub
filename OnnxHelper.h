@@ -7,18 +7,20 @@
 
 namespace AIModelLoader {
 	constexpr bool cuda_enabled{ false };
-	constexpr int image_size[2]{ 1280, 1280 }; // {height,width}, input shape (1, 3, 640, 640) BCHW and output shape(s) (1, 6, 8400)
+	constexpr int image_size[2]{ 640, 640 }; // {height,width}, input shape (1, 3, 640, 640) BCHW and output shape(s) (1, 6, 8400)
 	constexpr float model_score_threshold{ 0.25 }; // confidence threshold
 	constexpr float model_nms_threshold{ 0.40 }; // iou threshold
 
 #ifdef _MSC_VER
-	const constexpr char* onnx_file{ "../111NotGitHub/testData/onnx/yolov8x.onnx" };
+	const constexpr char* v5_onnx_file{ "../111NotGitHub/testData/onnx/yolov5n.onnx" };
+	const constexpr char* v8_onnx_file{ "../111NotGitHub/testData/onnx/yolov8x.onnx" };
 	//const constexpr char* torchscript_file{ "../111NotGitHub/testData/best.torchscript" };
 	const constexpr char* images_dir{ "../111NotGitHub/testData/predict" };
 	const constexpr char* result_dir{ "../111NotGitHub/testData/result" };
 	const constexpr char* classes_file{ "../111NotGitHub/testData/images/labels.txt" };
 #else
-	const constexpr char* onnx_file{ ".testData/yolov5n.onnx" };
+	const constexpr char* v5_onnx_file{ ".testData/yolov5n.onnx" };
+	const constexpr char* v8_onnx_file{ ".testData/yolov8x.onnx" };
 	//const constexpr char* torchscript_file{ "./testData/best.torchscript" };
 	const constexpr char* images_dir{ "./testData/images/predict" };
 	const constexpr char* result_dir{ "./testData/result" };
@@ -38,7 +40,8 @@ namespace AIModelLoader {
 	{
 	public:
 		OnnxHelper();
-		int test_detect_opencv();
+		int yolov5_detect();
+		int yolov8_detect();
 
 	private:
 		cv::Mat modify_image_size(const cv::Mat& img);

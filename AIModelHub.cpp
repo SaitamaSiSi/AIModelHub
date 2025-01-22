@@ -16,7 +16,8 @@ void TestOpenCv()
 
 int main(int argc, char** argv) {
 	AIModelLoader::OnnxHelper helper;
-	helper.test_detect_opencv();
+	helper.yolov5_detect();
+	// helper.yolov8_detect();
 	return 0;
 }
 
