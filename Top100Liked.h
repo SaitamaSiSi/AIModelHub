@@ -134,7 +134,13 @@ namespace Top100Liked
 
 #pragma region 普通数组
 
-
+		/// <summary>
+		/// 最大子数组和
+		/// </summary>
+		/// <param name="nums"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		int maxSubArray(vector<int>& nums, bool isMyOwn = false);
 
 #pragma endregion
 
