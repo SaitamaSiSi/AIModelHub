@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClCompile Include="AIModelHub.cpp" />
     <ClCompile Include="OnnxHelper.cpp" />
+    <ClCompile Include="Top100Liked.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="CommonTool.h" />
     <ClInclude Include="OnnxHelper.h" />
+    <ClInclude Include="Top100Liked.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

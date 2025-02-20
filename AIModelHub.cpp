@@ -1,6 +1,8 @@
 ﻿#include <opencv2/opencv.hpp>
 #include "OnnxHelper.h"
 
+#include "Top100Liked.h"
+
 void TestOpenCv()
 {
 	cv::Mat src = cv::imread("./testData//test.jpg", 1);
@@ -15,9 +17,12 @@ void TestOpenCv()
 }
 
 int main(int argc, char** argv) {
-	AIModelLoader::OnnxHelper helper;
-	helper.yolov5_detect();
+	// AIModelLoader::OnnxHelper helper;
+	// helper.yolov5_detect();
 	// helper.yolov8_detect();
+
+	Top100Liked::Solution solution;
+
 	return 0;
 }
 
