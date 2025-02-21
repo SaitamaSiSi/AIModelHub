@@ -948,4 +948,224 @@ int Top100Liked::Solution::maxSubArray(vector<int>& nums, bool isMyOwn)
 	}
 }
 
+/*
+以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
+
+示例 1：
+输入：intervals = [[1,3],[2,6],[8,10],[15,18]]
+输出：[[1,6],[8,10],[15,18]]
+解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
+
+示例 2：
+输入：intervals = [[1,4],[4,5]]
+输出：[[1,5]]
+解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。
+
+示例 3：
+输入：intervals = [[2,5],[1,5]]
+输出：[[1,5]]
+
+示例 4：
+输入：intervals = [[1,5],[2,3]]
+输出：[[1,5]]
+
+提示：
+1 <= intervals.length <= 104
+intervals[i].length == 2
+0 <= starti <= endi <= 104
+
+备注：
+数据已经经过排序，大小方面的比较相对简单处理，仅仅需要考虑新数据左侧是否大于尾部数据右侧即可。
+*/
+vector<vector<int>> Top100Liked::Solution::merge(vector<vector<int>>& intervals, bool isMyOwn)
+{
+	if (isMyOwn) {
+		sort(intervals.begin(), intervals.end());
+		vector<vector<int>> result;
+		for (auto vec : intervals) {
+			if (!result.empty() && (result.back()[1] >= vec[0] || result.back()[1] >= vec[1])) {
+				int left = result.back()[0];
+				int right = result.back()[1] > vec[1] ? result.back()[1] : vec[1];
+				result.pop_back();
+				result.push_back({ left, right });
+			}
+			else {
+				result.push_back(vec);
+			}
+		}
+		return result;
+	}
+	else {
+		if (intervals.size() == 0) {
+			return {};
+		}
+		sort(intervals.begin(), intervals.end());
+		vector<vector<int>> merged;
+		for (int i = 0; i < intervals.size(); ++i) {
+			int L = intervals[i][0], R = intervals[i][1];
+			if (!merged.size() || merged.back()[1] < L) {
+				merged.push_back({ L, R });
+			}
+			else {
+				merged.back()[1] = max(merged.back()[1], R);
+			}
+		}
+		return merged;
+	}
+}
+
+/*
+给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。
+
+示例 1:
+输入: nums = [1,2,3,4,5,6,7], k = 3
+输出: [5,6,7,1,2,3,4]
+解释:
+向右轮转 1 步: [7,1,2,3,4,5,6]
+向右轮转 2 步: [6,7,1,2,3,4,5]
+向右轮转 3 步: [5,6,7,1,2,3,4]
+
+示例 2:
+输入：nums = [-1,-100,3,99], k = 2
+输出：[3,99,-1,-100]
+解释:
+向右轮转 1 步: [99,-1,-100,3]
+向右轮转 2 步: [3,99,-1,-100]
+
+提示：
+1 <= nums.length <= 105
+-231 <= nums[i] <= 231 - 1
+0 <= k <= 105
+
+进阶：
+尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。
+你可以使用空间复杂度为 O(1) 的 原地 算法解决这个问题吗？
+
+备注：
+因为是按照顺序从右侧移出，并添加到左侧，先出先进，相当于翻转了一次。
+所以可以先进行翻转，再由于先出先进，交换k步长的顺序，完成移出部分数据的顺序和位置，再将剩余数据翻转回原顺序和位置即可。
+*/
+void Top100Liked::Solution::rotate(vector<int>& nums, int k, bool isMyOwn)
+{
+	if (isMyOwn) {
+		if (nums.size() <= 1) { return; }
+		int sweap = 0;
+		// 1,2,3,4,5,6,7
+		int num = nums.size();
+		// 除去多余的循环移动步数
+		k = k % num;
+		// 7 6 5 4 3 2 1
+		for (int i = 0; i < (num / 2); i++)
+		{
+			sweap = nums[num - 1 - i];
+			nums[num - 1 - i] = nums[i];
+			nums[i] = sweap;
+		}
+		// 5 6 7 4 3 2 1
+		for (int i = 0; i < (k / 2); i++)
+		{
+			sweap = nums[k - 1 - i];
+			nums[k - 1 - i] = nums[i];
+			nums[i] = sweap;
+		}
+		// 5 6 7 1 2 3 4
+		for (int i = 0; i < ((num - k) / 2); i++)
+		{
+			sweap = nums[num - 1 - i];
+			nums[num - 1 - i] = nums[k + i];
+			nums[k + i] = sweap;
+		}
+		// 5 6 7 1 2 3 4
+	}
+	else {
+		k %= nums.size();
+		reverse(nums.begin(), nums.end());
+		reverse(nums.begin(), nums.begin() + k);
+		reverse(nums.begin() + k, nums.end());
+
+		// 环状替换，暂不推荐
+		//int n = nums.size();
+		//k = k % n;
+		//// 计算最大公约数, (48, 18) => 6, (-24, 0) => 24
+		//int count = gcd(k, n);
+		//for (int start = 0; start < count; ++start) {
+		//	int current = start;
+		//	int prev = nums[start];
+		//	do {
+		//		int next = (current + k) % n;
+		//		swap(nums[next], prev);
+		//		current = next;
+		//	} while (start != current);
+		//}
+	}
+}
+
+/*
+给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。
+题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。
+请 不要使用除法，且在 O(n) 时间复杂度内完成此题。
+
+示例 1:
+输入: nums = [1,2,3,4]
+输出: [24,12,8,6]
+
+示例 2:
+输入: nums = [-1,1,0,-3,3]
+输出: [0,0,9,0,0]
+
+提示：
+2 <= nums.length <= 105
+-30 <= nums[i] <= 30
+输入 保证 数组 answer[i] 在  32 位 整数范围内
+
+进阶：你可以在 O(1) 的额外空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组 不被视为 额外空间。）
+
+备注：
+时间复杂度 O(2n) 可以近似看成 O(n)，所以循环常量次数也可以符合题意
+*/
+vector<int> Top100Liked::Solution::productExceptSelf(vector<int>& nums, bool isMyOwn)
+{
+	if (isMyOwn) {
+		vector<int> result(nums.size());
+		int total = 1;
+		for (int i = 0; i < nums.size(); ++i) {
+			total *= nums[i];
+			result[i] = total;
+		}
+		total = 1;
+		for (int i = nums.size() - 1; i >= 0; i--) {
+			if (i == 0) {
+				result[i] = total;
+			}
+			else {
+				result[i] = result[i - 1] * total;
+			}
+			total *= nums[i];
+		}
+		return result;
+	}
+	else {
+		int length = nums.size();
+		vector<int> answer(length);
+
+		// answer[i] 表示索引 i 左侧所有元素的乘积
+		// 因为索引为 '0' 的元素左侧没有元素， 所以 answer[0] = 1
+		answer[0] = 1;
+		for (int i = 1; i < length; i++) {
+			answer[i] = nums[i - 1] * answer[i - 1];
+		}
+
+		// R 为右侧所有元素的乘积
+		// 刚开始右边没有元素，所以 R = 1
+		int R = 1;
+		for (int i = length - 1; i >= 0; i--) {
+			// 对于索引 i，左边的乘积为 answer[i]，右边的乘积为 R
+			answer[i] = answer[i] * R;
+			// R 需要包含右边所有的乘积，所以计算下一个结果时需要将当前值乘到 R 上
+			R *= nums[i];
+		}
+		return answer;
+	}
+}
+
 

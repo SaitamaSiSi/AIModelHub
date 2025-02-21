@@ -1,11 +1,12 @@
 #pragma once
 
-#include <vector>
-#include <unordered_map>
-#include <string>
 #include <set>
+#include <vector>
+#include <string>
 #include <unordered_set>
-#include <algorithm>
+#include <unordered_map>
+#include <algorithm> // 包含 std::sort
+// #include <numeric> // 包含 std::gcd
 
 using namespace std;
 
@@ -141,6 +142,30 @@ namespace Top100Liked
 		/// <param name="isMyOwn"></param>
 		/// <returns></returns>
 		int maxSubArray(vector<int>& nums, bool isMyOwn = false);
+
+		/// <summary>
+		/// 合并区间（参考）
+		/// </summary>
+		/// <param name="intervals"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		vector<vector<int>> merge(vector<vector<int>>& intervals, bool isMyOwn = false);
+
+		/// <summary>
+		/// 轮转数组
+		/// </summary>
+		/// <param name="nums"></param>
+		/// <param name="k"></param>
+		/// <param name="isMyOwn"></param>
+		void rotate(vector<int>& nums, int k, bool isMyOwn = false);
+
+		/// <summary>
+		/// 除自身以外数组的乘积
+		/// </summary>
+		/// <param name="nums"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		vector<int> productExceptSelf(vector<int>& nums, bool isMyOwn = false);
 
 #pragma endregion
 
