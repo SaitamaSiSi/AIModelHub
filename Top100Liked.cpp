@@ -191,7 +191,7 @@ int Top100Liked::Solution::longestConsecutive(vector<int>& nums, bool isMyOwn)
 
 提示:
 1 <= nums.length <= 104
--231 <= nums[i] <= 231 - 1
+-2的31次方 <= nums[i] <= 2的31次方 - 1
 
 进阶：你能尽量减少完成的操作次数吗？
 */
@@ -1034,7 +1034,7 @@ vector<vector<int>> Top100Liked::Solution::merge(vector<vector<int>>& intervals,
 
 提示：
 1 <= nums.length <= 105
--231 <= nums[i] <= 231 - 1
+-2的31次方 <= nums[i] <= 2的31次方 - 1
 0 <= k <= 105
 
 进阶：
@@ -1165,6 +1165,242 @@ vector<int> Top100Liked::Solution::productExceptSelf(vector<int>& nums, bool isM
 			R *= nums[i];
 		}
 		return answer;
+	}
+}
+
+/*
+给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
+请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
+
+示例 1：
+输入：nums = [1,2,0]
+输出：3
+解释：范围 [1,2] 中的数字都在数组中。
+
+示例 2：
+输入：nums = [3,4,-1,1]
+输出：2
+解释：1 在数组中，但 2 没有。
+
+示例 3：
+输入：nums = [7,8,9,11,12]
+输出：1
+解释：最小的正数 1 没有出现。
+
+提示：
+1 <= nums.length <= 105
+-2的31次方 <= nums[i] <= 2的31次方 - 1
+
+备注：
+官方示例方式是采用哈希表的逻辑实现，哈希表本身也是一个数组，将i放在角标i-1的位置。
+比如 3 4 -1 1
+将3放在角标2上后，-1 4 3 1 ，还需要再次检测-1，不符合条件，不用再调整
+将4放在角标3上后，-1 1 3 4 ，还需再次检测下1，符合条件，且不在自身位置，再次调整
+将1放在角标0上后，1 -1 3 4 ，还需再次检测下-1，不符合条件，不用再调整
+后续3 4 都在自身位置，无需再调整
+*/
+int Top100Liked::Solution::firstMissingPositive(vector<int>& nums, bool isMyOwn)
+{
+	if (isMyOwn) {
+		sort(nums.begin(), nums.end());
+		int minNum = 0;
+		for (int i = 0; i < nums.size(); ++i) {
+			if (nums[i] > 0 && nums[i] == minNum + 1) {
+				minNum = nums[i];
+			}
+		}
+		if (minNum == 0) {
+			minNum = 1;
+		}
+		else {
+			minNum++;
+		}
+		return minNum;
+	}
+	else {
+		for (int i = 0; i < nums.size(); i++) {
+			while (nums[i] > 0 && nums[i] <= nums.size() && nums[i] != nums[nums[i] - 1]) {
+				swap(nums[i], nums[nums[i] - 1]);
+			}
+		}
+		for (int i = 0; i < nums.size(); i++) {
+			if (nums[i] != i + 1)
+				return i + 1;
+		}
+		return nums.size() + 1;
+	}
+}
+
+/*
+给定一个 m x n 的矩阵，如果一个元素为 0 ，则将其所在行和列的所有元素都设为 0 。请使用 原地 算法。
+
+示例 1：
+输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
+输出：[[1,0,1],[0,0,0],[1,0,1]]
+
+示例 2：
+输入：matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+输出：[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+
+提示：
+m == matrix.length
+n == matrix[0].length
+1 <= m, n <= 200
+-2的31次方 <= matrix[i][j] <= 2的31次方 - 1
+
+进阶：
+一个直观的解决方案是使用  O(mn) 的额外空间，但这并不是一个好的解决方案。
+一个简单的改进方案是使用 O(m + n) 的额外空间，但这仍然不是最好的解决方案。
+你能想出一个仅使用常量空间的解决方案吗？
+*/
+void Top100Liked::Solution::setZeroes(vector<vector<int>>& matrix, bool isMyOwn)
+{
+	if (isMyOwn) {
+		int m = matrix.size();
+		int n = matrix[0].size();
+		vector<int> top(200, -1);
+		vector<int> left(200, -1);
+		for (int i = 0; i < m; ++i) {
+			for (int j = 0; j < n; ++j) {
+				if (matrix[i][j] == 0) {
+					top[j] = 0;
+					left[i] = 0;
+				}
+			}
+		}
+		for (int i = 0; i < n; ++i) {
+			if (top[i] == 0) {
+				for (int j = 0; j < m; j++) {
+					matrix[j][i] = 0;
+				}
+			}
+		}
+		for (int i = 0; i < m; ++i) {
+			if (left[i] == 0) {
+				for (int j = 0; j < n; j++) {
+					matrix[i][j] = 0;
+				}
+			}
+		}
+	}
+	else {
+		int m = matrix.size();
+		int n = matrix[0].size();
+		int flag_col0 = false;
+		for (int i = 0; i < m; i++) {
+			if (!matrix[i][0]) {
+				flag_col0 = true;
+			}
+			for (int j = 1; j < n; j++) {
+				if (!matrix[i][j]) {
+					matrix[i][0] = matrix[0][j] = 0;
+				}
+			}
+		}
+		for (int i = m - 1; i >= 0; i--) {
+			for (int j = 1; j < n; j++) {
+				if (!matrix[i][0] || !matrix[0][j]) {
+					matrix[i][j] = 0;
+				}
+			}
+			if (flag_col0) {
+				matrix[i][0] = 0;
+			}
+		}
+	}
+}
+
+/*
+给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
+
+示例 1：
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[1,2,3,6,9,8,7,4,5]
+
+示例 2：
+输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+输出：[1,2,3,4,8,12,11,10,9,5,6,7]
+
+提示：
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 10
+-100 <= matrix[i][j] <= 100
+
+备注：
+将螺旋矩阵看作四面墙，每次移动后，墙壁都往内缩小。
+*/
+vector<int> Top100Liked::Solution::spiralOrder(vector<vector<int>>& matrix, bool isMyOwn)
+{
+	if (isMyOwn) {
+		int m = matrix.size();
+		int n = matrix[0].size();
+		vector<int> result;
+		int start = 0, top = 0, left = 0, right = n - 1, bottom = m - 1;
+		while (true) {
+			// 层级下移
+			for (int i = left; i <= right; i++) {
+				result.push_back(matrix[top][i]);
+				start++;
+			}
+			top++;
+			if (start >= m * n) { break; }
+
+			// 层级左移
+			for (int i = top; i <= bottom; i++) {
+				result.push_back(matrix[i][right]);
+				start++;
+			}
+			right--;
+			if (start >= m * n) { break; }
+
+			// 层级上移
+			for (int i = right; i >= left; i--) {
+				result.push_back(matrix[bottom][i]);
+				start++;
+			}
+			bottom--;
+			if (start >= m * n) { break; }
+
+			// 层级右移
+			for (int i = bottom; i >= top; i--) {
+				result.push_back(matrix[i][left]);
+				start++;
+			}
+			left++;
+			if (start >= m * n) { break; }
+		}
+		return result;
+	}
+	else {
+		if (matrix.size() == 0 || matrix[0].size() == 0) {
+			return {};
+		}
+
+		int rows = matrix.size(), columns = matrix[0].size();
+		vector<int> order;
+		int left = 0, right = columns - 1, top = 0, bottom = rows - 1;
+		while (left <= right && top <= bottom) {
+			for (int column = left; column <= right; column++) {
+				order.push_back(matrix[top][column]);
+			}
+			for (int row = top + 1; row <= bottom; row++) {
+				order.push_back(matrix[row][right]);
+			}
+			if (left < right&& top < bottom) {
+				for (int column = right - 1; column > left; column--) {
+					order.push_back(matrix[bottom][column]);
+				}
+				for (int row = bottom; row > top; row--) {
+					order.push_back(matrix[row][left]);
+				}
+			}
+			left++;
+			right--;
+			top++;
+			bottom--;
+		}
+		return order;
 	}
 }
 

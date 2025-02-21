@@ -167,6 +167,33 @@ namespace Top100Liked
 		/// <returns></returns>
 		vector<int> productExceptSelf(vector<int>& nums, bool isMyOwn = false);
 
+		/// <summary>
+		/// 缺失的第一个正数
+		/// </summary>
+		/// <param name="nums"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		int firstMissingPositive(vector<int>& nums, bool isMyOwn = false);
+
+#pragma endregion
+
+#pragma region 矩阵
+
+		/// <summary>
+		/// 矩阵置零
+		/// </summary>
+		/// <param name="matrix"></param>
+		/// <param name="isMyOwn"></param>
+		void setZeroes(vector<vector<int>>& matrix, bool isMyOwn = false);
+
+		/// <summary>
+		/// 螺旋矩阵
+		/// </summary>
+		/// <param name="matrix"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		vector<int> spiralOrder(vector<vector<int>>& matrix, bool isMyOwn = false);
+
 #pragma endregion
 
 	};
