@@ -21,6 +21,21 @@ int main(int argc, char** argv) {
 	// helper.yolov5_detect();
 	// helper.yolov8_detect();
 
+	/*Top100Liked::Solution::ListNode2* AList;
+	Top100Liked::Solution::ListNode2** insertA = &AList;
+	vector<int> dataA{ 4,1,8,4,5 };
+	for (int i = 0; i < dataA.size(); ++i) {
+		*insertA = new Top100Liked::Solution::ListNode2(dataA[i]);
+		insertA = &((*insertA)->next);
+	}
+	Top100Liked::Solution::ListNode2* temp = nullptr;
+	temp = AList;
+	while (temp != nullptr) {
+		auto* current = temp;
+		temp = temp->next;
+		delete current;
+	}*/
+
 	Top100Liked::Solution solution;
 
 	return 0;

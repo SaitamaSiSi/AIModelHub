@@ -1404,4 +1404,441 @@ vector<int> Top100Liked::Solution::spiralOrder(vector<vector<int>>& matrix, bool
 	}
 }
 
+/*
+给定一个 n × n 的二维矩阵 matrix 表示一个图像。请你将图像顺时针旋转 90 度。
+你必须在 原地 旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要 使用另一个矩阵来旋转图像。
+
+示例 1：
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[[7,4,1],[8,5,2],[9,6,3]]
+
+示例 2：
+输入：matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+输出：[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+
+提示：
+n == matrix.length == matrix[i].length
+1 <= n <= 20
+-1000 <= matrix[i][j] <= 1000
+
+备注：
+官方示例将旋转看作翻转处理，先垂直翻转再主对角线翻转。
+*/
+void Top100Liked::Solution::rotate(vector<vector<int>>& matrix, bool isMyOwn)
+{
+	if (isMyOwn) {
+		int num = matrix.size();
+		int circle = num / 2;
+		num--;
+		bool doubleFlag = (num % 2 == 0);
+		// 链式循环交换
+		for (int i = 0; i < circle; i++)
+		{
+			int temp = 0;
+			for (int j = 0; j < circle; j++)
+			{
+				temp = matrix[j][num - i];
+				matrix[j][num - i] = matrix[i][j];
+				matrix[i][j] = temp;
+
+				temp = matrix[num - i][num - j];
+				matrix[num - i][num - j] = matrix[i][j];
+				matrix[i][j] = temp;
+
+				temp = matrix[num - j][i];
+				matrix[num - j][i] = matrix[i][j];
+				matrix[i][j] = temp;
+			}
+			if (doubleFlag) {
+				temp = matrix[circle][num - i];
+				matrix[circle][num - i] = matrix[i][circle];
+				matrix[i][circle] = temp;
+
+				temp = matrix[num - i][num - circle];
+				matrix[num - i][num - circle] = matrix[i][circle];
+				matrix[i][circle] = temp;
+
+				temp = matrix[num - circle][i];
+				matrix[num - circle][i] = matrix[i][circle];
+				matrix[i][circle] = temp;
+			}
+		}
+	}
+	else {
+		int n = matrix.size();
+		// 水平翻转
+		for (int i = 0; i < n / 2; ++i) {
+			for (int j = 0; j < n; ++j) {
+				swap(matrix[i][j], matrix[n - i - 1][j]);
+			}
+		}
+		// 主对角线翻转
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < i; ++j) {
+				swap(matrix[i][j], matrix[j][i]);
+			}
+		}
+	}
+}
+
+/*
+编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target 。该矩阵具有以下特性：
+每行的元素从左到右升序排列。
+每列的元素从上到下升序排列。
+
+示例 1：
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
+输出：true
+
+示例 2：
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
+输出：false
+
+提示：
+m == matrix.length
+n == matrix[i].length
+1 <= n, m <= 300
+-10的9次方 <= matrix[i][j] <= 10的9次方
+每行的所有元素从左到右升序排列
+每列的所有元素从上到下升序排列
+-10的9次方 <= target <= 10的9次方
+
+备注：
+官方答案是一开始就是从第一行最大的开始比较，并不是从 0，0 开始。
+由于都是从小到大的顺序，故当left--后，并不需要考虑在下一层会出现left++的情况，因为[top][left]大于target，故[top+1][left]也必定大于target
+*/
+bool Top100Liked::Solution::searchMatrix(vector<vector<int>>& matrix, int target, bool isMyOwn)
+{
+	if (isMyOwn) {
+		int m = matrix.size();
+		int n = matrix[0].size();
+		int left = 0, top = 0;
+		while (left < n && top < m) {
+			if (matrix[top][left] == target) {
+				return true;
+			}
+			else if (matrix[top][left] < target && left < n - 1) {
+				left++;
+			}
+			else {
+				top++;
+				while (top < m && left > 0 && matrix[top][left] > target) {
+					left--;
+				}
+			}
+		}
+		return false;
+	}
+	else {
+		int m = matrix.size(), n = matrix[0].size();
+		int x = 0, y = n - 1;
+		while (x < m && y >= 0) {
+			if (matrix[x][y] == target) {
+				return true;
+			}
+			if (matrix[x][y] > target) {
+				--y;
+			}
+			else {
+				++x;
+			}
+		}
+		return false;
+	}
+}
+
+/*
+给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。
+
+图示两个链表在节点 c1 开始相交：
+A:    a1-a2-c1-c2-c3
+B: b1-b2-b3-c1-c2-c3
+
+题目数据 保证 整个链式结构中不存在环。
+注意，函数返回结果后，链表必须 保持其原始结构 。
+自定义评测：
+评测系统 的输入如下（你设计的程序 不适用 此输入）：
+intersectVal - 相交的起始节点的值。如果不存在相交节点，这一值为 0
+listA - 第一个链表
+listB - 第二个链表
+skipA - 在 listA 中（从头节点开始）跳到交叉节点的节点数
+skipB - 在 listB 中（从头节点开始）跳到交叉节点的节点数
+评测系统将根据这些输入创建链式数据结构，并将两个头节点 headA 和 headB 传递给你的程序。如果程序能够正确返回相交节点，那么你的解决方案将被 视作正确答案 。
+
+示例 1：
+A:   4-1-8-4-5
+B: 5-6-1-8-4-5
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+输出：Intersected at '8'
+解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
+在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+— 请注意相交节点的值不为 1，因为在链表 A 和链表 B 之中值为 1 的节点 (A 中第二个节点和 B 中第三个节点) 是不同的节点。换句话说，它们在内存中指向两个不同的位置，而链表 A 和链表 B 中值为 8 的节点 (A 中第三个节点，B 中第四个节点) 在内存中指向相同的位置。
+
+
+示例 2：
+A: 1-9-1-2-4
+B:     3-2-4
+输入：intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+输出：Intersected at '2'
+解释：相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [1,9,1,2,4]，链表 B 为 [3,2,4]。
+在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
+
+示例 3：
+A: 2-6-4
+B: 1-5
+输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+输出：No intersection
+解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。
+由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
+这两个链表不相交，因此返回 null 。
+
+提示：
+listA 中节点数目为 m
+listB 中节点数目为 n
+1 <= m, n <= 3 * 10的4次方
+1 <= Node.val <= 10的5次方
+0 <= skipA <= m
+0 <= skipB <= n
+如果 listA 和 listB 没有交点，intersectVal 为 0
+如果 listA 和 listB 有交点，intersectVal == listA[skipA] == listB[skipB]
+
+进阶：你能否设计一个时间复杂度 O(m + n) 、仅用 O(1) 内存的解决方案？
+
+备注：
+并不是直接比较值，而是比较 内存中的地址
+*/
+Top100Liked::Solution::ListNode* Top100Liked::Solution::getIntersectionNode(ListNode* headA, ListNode* headB, bool isMyOwn)
+{
+	isMyOwn = false;
+	if (isMyOwn) {
+		vector<int>tempA;
+		vector<int>tempB;
+		Top100Liked::Solution::ListNode* retNode = headB;
+		while (headA != nullptr) {
+			tempA.push_back(headA->val);
+			headA = headA->next;
+		}
+		while (headB != nullptr) {
+			tempB.push_back(headB->val);
+			headB = headB->next;
+		}
+		int index = 0;
+		int m = tempA.size();
+		int n = tempB.size();
+		for (int i = n - 1; i > 0; i--) {
+			if (tempB[i] != tempA[m - n + i]) {
+				break;
+			}
+			index++;
+		}
+		if (index != 0) {
+			for (int i = 0; i < n - index; i++) {
+				retNode = retNode->next;
+			}
+			return retNode;
+		}
+		return nullptr;
+	}
+	else {
+		if (headA == nullptr || headB == nullptr) {
+			return nullptr;
+		}
+		ListNode* pA = headA, * pB = headB;
+		while (pA != pB) {
+			pA = pA == nullptr ? headB : pA->next;
+			pB = pB == nullptr ? headA : pB->next;
+		}
+		return pA;
+	}
+}
+
+/*
+给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+
+示例 1：
+输入：head = [1,2,3,4,5]
+输出：[5,4,3,2,1]
+
+示例 2：
+输入：head = [1,2]
+输出：[2,1]
+
+示例 3：
+输入：head = []
+输出：[]
+
+提示：
+链表中节点的数目范围是 [0, 5000]
+-5000 <= Node.val <= 5000
+
+进阶：链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
+
+备注：
+官方方法并没有重新创建新节点在递归添加回来，而是递归从尾指向开头的链接，并同时打断从头指向尾的链接
+*/
+Top100Liked::Solution::ListNode2* Top100Liked::Solution::reverseList(ListNode2* head, bool isMyOwn)
+{
+	if (isMyOwn) {
+		if (head != NULL && head->next != NULL)
+		{
+			ListNode2* p = new ListNode2;
+			int val = head->val;
+			p->val = val;
+			head = reverseList(head->next, isMyOwn);
+			ListNode2* cur = head;
+			while (head->next != NULL)
+			{
+				head = head->next;
+			}
+			head->next = p;
+			head = cur;
+		}
+		return head;
+	}
+	else {
+		if (!head || !head->next) {
+			return head;
+		}
+		ListNode2* newHead = reverseList(head->next, isMyOwn);
+		head->next->next = head;
+		head->next = nullptr;
+		return newHead;
+	}
+}
+
+void backtrack(vector<vector<int>>& res, vector<int>& output, int first, int len) {
+	// 所有数都填完了
+	if (first == len) {
+		res.emplace_back(output);
+		return;
+	}
+	for (int i = first; i < len; ++i) {
+		// 动态维护数组
+		swap(output[i], output[first]);
+		// 继续递归填下一个数
+		backtrack(res, output, first + 1, len);
+		// 撤销操作
+		swap(output[i], output[first]);
+	}
+}
+/*
+给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
+
+示例 1：
+输入：nums = [1,2,3]
+输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
+示例 2：
+输入：nums = [0,1]
+输出：[[0,1],[1,0]]
+
+示例 3：
+输入：nums = [1]
+输出：[[1]]
+
+提示：
+1 <= nums.length <= 6
+-10 <= nums[i] <= 10
+nums 中的所有整数 互不相同
+
+备注：
+官方采用另写一个递归函数，当第一次进入循环时，fitst有n种可能，即交换n次到第一位，进入递归后，同理第二位有n-1种可能，完成递归后，需将数据复原，避免影响放置其他数据的情况
+*/
+vector<vector<int>> Top100Liked::Solution::permute(vector<int>& nums, bool isMyOwn)
+{
+	if (isMyOwn) {
+		vector<vector<int>>ret;
+		if (nums.size() == 1) {
+			vector<int> start{ nums[0] };
+			ret.push_back(start);
+		}
+		else {
+			for (int i = 0; i < nums.size(); i++) {
+				vector<int> newVec = nums;
+				newVec.erase(find(newVec.begin(), newVec.end(), nums[i]));
+				auto temp = permute(newVec, isMyOwn);
+				for (auto item : temp) {
+					if (find(item.begin(), item.end(), nums[i]) == item.end()) {
+						item.push_back(nums[i]);
+						ret.push_back(item);
+					}
+				}
+			}
+		}
+		return ret;
+	}
+	else {
+		vector<vector<int>> res;
+		backtrack(res, nums, 0, (int)nums.size());
+		return res;
+	}
+}
+
+void myLoop(vector<string>& res, string output, int l, int r, int n) {
+	// 左括号小于n并且右括号少于左括号
+	if (r == 0 && l == 0) {
+		res.push_back(output);
+	}
+	// 先放左括号
+	if (l > 0) {
+		myLoop(res, output + "(", l - 1, r, n);
+	}
+	// 后补右括号
+	if (r > l) {
+		myLoop(res, output + ")", l, r - 1, n);
+	}
+}
+void backtrack(vector<string>& ans, string& cur, int open, int close, int n) {
+	if (cur.size() == n * 2) {
+		ans.push_back(cur);
+		return;
+	}
+	if (open < n) {
+		cur.push_back('(');
+		backtrack(ans, cur, open + 1, close, n);
+		cur.pop_back();
+	}
+	if (close < open) {
+		cur.push_back(')');
+		backtrack(ans, cur, open, close + 1, n);
+		cur.pop_back();
+	}
+}
+/*
+数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+
+示例 1：
+输入：n = 3
+输出：["((()))","(()())","(())()","()(())","()()()"]
+
+示例 2：
+输入：n = 1
+输出：["()"]
+
+提示：
+1 <= n <= 8
+
+备注：
+官方大致思路一致，只是从n开始，变成了从0开始，方法三暂不考虑
+*/
+vector<string> Top100Liked::Solution::generateParenthesis(int n, bool isMyOwn)
+{
+	if (isMyOwn) {
+		vector<string> ret;
+		myLoop(ret, "", n, n, n);
+		return ret;
+	}
+	else {
+		vector<string> result;
+		string current;
+		backtrack(result, current, 0, 0, n);
+		return result;
+	}
+}
+
+
+
+
 

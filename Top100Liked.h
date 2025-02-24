@@ -194,6 +194,76 @@ namespace Top100Liked
 		/// <returns></returns>
 		vector<int> spiralOrder(vector<vector<int>>& matrix, bool isMyOwn = false);
 
+		/// <summary>
+		/// 旋转图像
+		/// </summary>
+		/// <param name="matrix"></param>
+		/// <param name="isMyOwn"></param>
+		void rotate(vector<vector<int>>& matrix, bool isMyOwn = false);
+
+		/// <summary>
+		/// 搜索二维矩阵 II
+		/// </summary>
+		/// <param name="matrix"></param>
+		/// <param name="target"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		bool searchMatrix(vector<vector<int>>& matrix, int target, bool isMyOwn = false);
+
+#pragma endregion
+
+#pragma region 链表
+
+		struct ListNode {
+			int val;
+			ListNode* next;
+			ListNode(int x) : val(x), next(NULL) {}
+
+		};
+		/// <summary>
+		/// 160 相交链表（未实现）
+		/// </summary>
+		/// <param name="headA"></param>
+		/// <param name="headB"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		ListNode* getIntersectionNode(ListNode* headA, ListNode* headB, bool isMyOwn = false);
+
+		struct ListNode2 {
+			int val;
+			ListNode2* next;
+			ListNode2() : val(0), next(nullptr) {}
+			ListNode2(int x) : val(x), next(nullptr) {}
+			ListNode2(int x, ListNode2* next) : val(x), next(next) {}
+		};
+		/// <summary>
+		/// 反转链表
+		/// </summary>
+		/// <param name="head"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		ListNode2* reverseList(ListNode2* head, bool isMyOwn = false);
+
+#pragma endregion
+
+#pragma region 回溯
+
+		/// <summary>
+		/// 全排列
+		/// </summary>
+		/// <param name="nums"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		vector<vector<int>> permute(vector<int>& nums, bool isMyOwn = false);
+
+		/// <summary>
+		/// 括号生成
+		/// </summary>
+		/// <param name="n"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		vector<string> generateParenthesis(int n, bool isMyOwn = false);
+
 #pragma endregion
 
 	};
