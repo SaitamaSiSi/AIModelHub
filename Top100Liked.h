@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <set>
+#include <map>
 #include <vector>
 #include <string>
 #include <unordered_set>
@@ -263,6 +264,15 @@ namespace Top100Liked
 		/// <param name="isMyOwn"></param>
 		/// <returns></returns>
 		vector<string> generateParenthesis(int n, bool isMyOwn = false);
+
+		/// <summary>
+		/// 单词搜索
+		/// </summary>
+		/// <param name="board"></param>
+		/// <param name="word"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		bool exist(vector<vector<char>>& board, string word, bool isMyOwn = false);
 
 #pragma endregion
 

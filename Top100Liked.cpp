@@ -1776,18 +1776,18 @@ vector<vector<int>> Top100Liked::Solution::permute(vector<int>& nums, bool isMyO
 	}
 }
 
-void myLoop(vector<string>& res, string output, int l, int r, int n) {
+void myLoop(vector<string>& res, string output, int l, int r) {
 	// 左括号小于n并且右括号少于左括号
 	if (r == 0 && l == 0) {
 		res.push_back(output);
 	}
 	// 先放左括号
 	if (l > 0) {
-		myLoop(res, output + "(", l - 1, r, n);
+		myLoop(res, output + "(", l - 1, r);
 	}
 	// 后补右括号
 	if (r > l) {
-		myLoop(res, output + ")", l, r - 1, n);
+		myLoop(res, output + ")", l, r - 1);
 	}
 }
 void backtrack(vector<string>& ans, string& cur, int open, int close, int n) {
@@ -1827,7 +1827,7 @@ vector<string> Top100Liked::Solution::generateParenthesis(int n, bool isMyOwn)
 {
 	if (isMyOwn) {
 		vector<string> ret;
-		myLoop(ret, "", n, n, n);
+		myLoop(ret, "", n, n);
 		return ret;
 	}
 	else {
@@ -1835,6 +1835,141 @@ vector<string> Top100Liked::Solution::generateParenthesis(int n, bool isMyOwn)
 		string current;
 		backtrack(result, current, 0, 0, n);
 		return result;
+	}
+}
+
+vector<string> myLoop2(vector<vector<char>>& board, string word) {
+	vector<string> ret;
+	int len = word.length();
+	char target = word[0];
+	if (len > 1) {
+		vector<string> childrenRet = myLoop2(board, word.substr(1, len - 1));
+		int h = board.size(), w = board[0].size();
+		vector<pair<int, int>> record{ {0,1},{1,0},{0,-1},{-1,0} };
+		for (auto ad : childrenRet) {
+			int lastI = ad[ad.length() - 2] - '0';
+			int lastJ = ad[ad.length() - 1] - '0';
+			for (auto addP : record) {
+				int newI = lastI + addP.first;
+				int newJ = lastJ + addP.second;
+				if (newI >= 0 && newI < h && newJ >= 0 && newJ < w &&
+					board[newI][newJ] == target) {
+					string addStr = target + to_string(newI) + to_string(newJ);
+					if (ad.find(addStr) == -1) {
+						ret.push_back(ad + addStr);
+					}
+				}
+			}
+		}
+	}
+	else {
+		for (int i = 0; i < board.size(); i++) {
+			for (int j = 0; j < board[0].size(); j++) {
+				// 如果字符匹配
+				if (board[i][j] == target) {
+					string addStr = target + to_string(i) + to_string(j);
+					// 如果是最底层，则直接添加
+					ret.push_back(addStr);
+				}
+			}
+		}
+	}
+	return ret;
+}
+bool check(vector<vector<char>>& board, vector<vector<int>>& visited, int i, int j, string& s, int k) {
+	if (board[i][j] != s[k]) {
+		return false;
+	}
+	else if (k == s.length() - 1) {
+		return true;
+	}
+	visited[i][j] = true;
+	vector<pair<int, int>> directions{ {0, 1}, {0, -1}, {1, 0}, {-1, 0} };
+	bool result = false;
+	for (const auto& dir : directions) {
+		int newi = i + dir.first, newj = j + dir.second;
+		if (newi >= 0 && newi < board.size() && newj >= 0 && newj < board[0].size()) {
+			if (!visited[newi][newj]) {
+				bool flag = check(board, visited, newi, newj, s, k + 1);
+				if (flag) {
+					result = true;
+					break;
+				}
+			}
+		}
+	}
+	visited[i][j] = false;
+	return result;
+}
+/*
+给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。
+单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+
+示例 1：
+输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+输出：true
+
+示例 2：
+输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "SEE"
+输出：true
+
+示例 3：
+输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"
+输出：false
+
+提示：
+m == board.length
+n = board[i].length
+1 <= m, n <= 6
+1 <= word.length <= 15
+board 和 word 仅由大小写英文字母组成
+
+进阶：你可以使用搜索剪枝的技术来优化解决方案，使其在 board 更大的情况下可以更快解决问题？
+
+备注：
+暴力破解法：当全为A，且很多时候，查找BnA(n个A)的时候，就会非常耗时。不过该方法可返回所有可行路径及其路径角标记录。
+官方示例方法：通过遍历二维数组，当以此为起点时，是否能递归在上下左右长度1的距离找到下一个值，可以则继续，直到找完为止或者找到为止。通过二维数组记录前面哪些位置已经被访问。
+搜索剪枝的技术优化方案：可以通过计算传入单词中的字符在集合中出现频次，先从出现频次较少的位置开始遍历，减少递归深度。
+*/
+bool Top100Liked::Solution::exist(vector<vector<char>>& board, string word, bool isMyOwn)
+{
+	unordered_map<char, int> cnt;
+	// 统计集合中字符出现次数
+	for (auto& row : board) {
+		for (char c : row) {
+			cnt[c]++;
+		}
+	}
+
+	// 如果字符出现的次数比集合中还多则不可能存在路径
+	unordered_map<char, int> word_cnt;
+	for (char c : word) {
+		if (++word_cnt[c] > cnt[c]) {
+			return false;
+		}
+	}
+
+	// 如果集合中出现头部的频次比尾部还多，则翻转字符串
+	if (cnt[word.back()] < cnt[word[0]]) {
+		reverse(word.begin(), word.end());
+	}
+
+	if (isMyOwn) {
+		vector<string> address = myLoop2(board, word);
+		return address.size() > 0;
+	}
+	else {
+		int h = board.size(), w = board[0].size();
+		vector<vector<int>> visited(h, vector<int>(w));
+		for (int i = 0; i < h; i++) {
+			for (int j = 0; j < w; j++) {
+				bool flag = check(board, visited, i, j, word, 0);
+				if (flag) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
 
