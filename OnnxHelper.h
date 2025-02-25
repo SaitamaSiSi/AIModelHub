@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include <onnxruntime_cxx_api.h>
 #include <opencv2/opencv.hpp>
 
-// ²Î¿¼ÎÄÕÂ https://blog.csdn.net/fengbingchun/article/details/139203567
+// å‚è€ƒæ–‡ç«  https://blog.csdn.net/fengbingchun/article/details/139203567
 
 namespace AIModelLoader {
 	constexpr bool cuda_enabled{ false };

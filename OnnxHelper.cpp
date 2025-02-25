@@ -1,4 +1,4 @@
-#include "OnnxHelper.h"
+ï»¿#include "OnnxHelper.h"
 #include <fstream>
 #include <iostream>
 #include <filesystem>
@@ -63,12 +63,12 @@ namespace AIModelLoader {
 			std::vector<cv::Mat> outputs;
 			net.forward(outputs, net.getUnconnectedOutLayersNames());
 
-			// »ñÈ¡Êä³öµÄÎ¬¶ÈĞÅÏ¢
-			int rows = outputs[0].size[1]; // Ã¿¸öÔ¤²â¿òµÄ×ÜÊı£¨25200£©
-			int dimensions = outputs[0].size[2]; // Ã¿¸öÔ¤²â¿òµÄÎ¬¶È£¨num_classes + 5£©
+			// è·å–è¾“å‡ºçš„ç»´åº¦ä¿¡æ¯
+			int rows = outputs[0].size[1]; // æ¯ä¸ªé¢„æµ‹æ¡†çš„æ€»æ•°ï¼ˆ25200ï¼‰
+			int dimensions = outputs[0].size[2]; // æ¯ä¸ªé¢„æµ‹æ¡†çš„ç»´åº¦ï¼ˆnum_classes + 5ï¼‰
 
-			float* data = (float*)outputs[0].data; // »ñÈ¡Ä£ĞÍÊä³öµÄÔ­Ê¼Êı¾İ
-			float x_factor = bgr.cols * 1.f / image_size[1]; // Ëõ·ÅÒò×Ó£¬ÓÃÓÚ½«±ß½ç¿ò×ø±êÓ³Éä»ØÔ­Ê¼Í¼Ïñ
+			float* data = (float*)outputs[0].data; // è·å–æ¨¡å‹è¾“å‡ºçš„åŸå§‹æ•°æ®
+			float x_factor = bgr.cols * 1.f / image_size[1]; // ç¼©æ”¾å› å­ï¼Œç”¨äºå°†è¾¹ç•Œæ¡†åæ ‡æ˜ å°„å›åŸå§‹å›¾åƒ
 			float y_factor = bgr.rows * 1.f / image_size[0];
 
 			std::vector<int> class_ids;
@@ -76,18 +76,18 @@ namespace AIModelLoader {
 			std::vector<cv::Rect> boxes;
 
 			for (auto i = 0; i < rows; ++i) {
-				float* row_data = data + i * dimensions; // µ±Ç°ĞĞµÄÆğÊ¼Î»ÖÃ
+				float* row_data = data + i * dimensions; // å½“å‰è¡Œçš„èµ·å§‹ä½ç½®
 
-				float confidence = row_data[4]; // µÚ5¸öÖµÊÇÖÃĞÅ¶È
-				if (confidence > model_score_threshold) { // ÖÃĞÅ¶È´óÓÚãĞÖµ
-					cv::Mat scores(1, classes.size(), CV_32FC1, row_data + 5); // Àà±ğ·ÖÊı´ÓµÚ6¸öÖµ¿ªÊ¼
+				float confidence = row_data[4]; // ç¬¬5ä¸ªå€¼æ˜¯ç½®ä¿¡åº¦
+				if (confidence > model_score_threshold) { // ç½®ä¿¡åº¦å¤§äºé˜ˆå€¼
+					cv::Mat scores(1, classes.size(), CV_32FC1, row_data + 5); // ç±»åˆ«åˆ†æ•°ä»ç¬¬6ä¸ªå€¼å¼€å§‹
 					cv::Point class_id;
 					double max_class_score;
 
-					cv::minMaxLoc(scores, 0, &max_class_score, 0, &class_id); // ÕÒµ½×î´óÀà±ğ·ÖÊı¼°ÆäË÷Òı
+					cv::minMaxLoc(scores, 0, &max_class_score, 0, &class_id); // æ‰¾åˆ°æœ€å¤§ç±»åˆ«åˆ†æ•°åŠå…¶ç´¢å¼•
 
-					if (max_class_score > model_score_threshold) { // Àà±ğ·ÖÊı´óÓÚãĞÖµ
-						confidences.push_back(confidence * max_class_score); // ×ÛºÏÖÃĞÅ¶ÈºÍÀà±ğ·ÖÊı
+					if (max_class_score > model_score_threshold) { // ç±»åˆ«åˆ†æ•°å¤§äºé˜ˆå€¼
+						confidences.push_back(confidence * max_class_score); // ç»¼åˆç½®ä¿¡åº¦å’Œç±»åˆ«åˆ†æ•°
 						class_ids.push_back(class_id.x);
 
 						float x = row_data[0];

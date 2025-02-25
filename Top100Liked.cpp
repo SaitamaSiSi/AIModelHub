@@ -1,30 +1,30 @@
-#include "Top100Liked.h"
+﻿#include "Top100Liked.h"
 
 /*
-����һ���������� nums ��һ������Ŀ��ֵ target�������ڸ��������ҳ� ��ΪĿ��ֵ target  ���� ���� ���������������ǵ������±ꡣ
-����Լ���ÿ������ֻ���Ӧһ���𰸣������㲻��ʹ��������ͬ��Ԫ�ء�
-����԰�����˳�򷵻ش𰸡�
+给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。
+你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。
+你可以按任意顺序返回答案。
 
-ʾ�� 1��
-���룺nums = [2,7,11,15], target = 9
-�����[0,1]
-���ͣ���Ϊ nums[0] + nums[1] == 9 ������ [0, 1] ��
+示例 1：
+输入：nums = [2,7,11,15], target = 9
+输出：[0,1]
+解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
 
-ʾ�� 2��
-���룺nums = [3,2,4], target = 6
-�����[1,2]
+示例 2：
+输入：nums = [3,2,4], target = 6
+输出：[1,2]
 
-ʾ�� 3��
-���룺nums = [3,3], target = 6
-�����[0,1]
+示例 3：
+输入：nums = [3,3], target = 6
+输出：[0,1]
 
-��ʾ��
+提示：
 2 <= nums.length <= 104
 -109 <= nums[i] <= 109
 -109 <= target <= 109
-ֻ�����һ����Ч��
+只会存在一个有效答案
 
-���ף���������һ��ʱ�临�Ӷ�С�� O(n2) ���㷨��
+进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？
 */
 vector<int> Top100Liked::Solution::twoSum(vector<int>& nums, int target, bool isMyOwn)
 {
@@ -56,25 +56,25 @@ vector<int> Top100Liked::Solution::twoSum(vector<int>& nums, int target, bool is
 }
 
 /*
-����һ���ַ������飬���㽫 ��ĸ��λ�� �����һ�𡣿��԰�����˳�򷵻ؽ���б���
-��ĸ��λ�� ������������Դ���ʵ�������ĸ�õ���һ���µ��ʡ�
+给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
+字母异位词 是由重新排列源单词的所有字母得到的一个新单词。
 
-ʾ�� 1:
-����: strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-���: [["bat"],["nat","tan"],["ate","eat","tea"]]
+示例 1:
+输入: strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+输出: [["bat"],["nat","tan"],["ate","eat","tea"]]
 
-ʾ�� 2:
-����: strs = [""]
-���: [[""]]
+示例 2:
+输入: strs = [""]
+输出: [[""]]
 
-ʾ�� 3:
-����: strs = ["a"]
-���: [["a"]]
+示例 3:
+输入: strs = ["a"]
+输出: [["a"]]
 
-��ʾ��
+提示：
 1 <= strs.length <= 104
 0 <= strs[i].length <= 100
-strs[i] ������Сд��ĸ
+strs[i] 仅包含小写字母
 */
 vector<vector<string>> Top100Liked::Solution::groupAnagrams(vector<string>& strs, bool isMyOwn)
 {
@@ -109,23 +109,23 @@ vector<vector<string>> Top100Liked::Solution::groupAnagrams(vector<string>& strs
 }
 
 /*
-����һ��δ������������� nums ���ҳ���������������У���Ҫ������Ԫ����ԭ�������������ĳ��ȡ�
-������Ʋ�ʵ��ʱ�临�Ӷ�Ϊ O(n) ���㷨��������⡣
+给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
+请你设计并实现时间复杂度为 O(n) 的算法解决此问题。
 
-ʾ�� 1��
-���룺nums = [100,4,200,1,3,2]
-�����4
-���ͣ���������������� [1, 2, 3, 4]�����ĳ���Ϊ 4��
+示例 1：
+输入：nums = [100,4,200,1,3,2]
+输出：4
+解释：最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4。
 
-ʾ�� 2��
-���룺nums = [0,3,7,2,5,8,4,6,0,1]
-�����9
+示例 2：
+输入：nums = [0,3,7,2,5,8,4,6,0,1]
+输出：9
 
-ʾ�� 3��
-���룺nums = [1,0,1,2]
-�����3
+示例 3：
+输入：nums = [1,0,1,2]
+输出：3
 
-��ʾ��
+提示：
 0 <= nums.length <= 105
 -109 <= nums[i] <= 109
 */
@@ -178,22 +178,22 @@ int Top100Liked::Solution::longestConsecutive(vector<int>& nums, bool isMyOwn)
 }
 
 /*
-����һ������ nums����дһ������������ 0 �ƶ��������ĩβ��ͬʱ���ַ���Ԫ�ص����˳��
-��ע�� �������ڲ���������������ԭ�ض�������в�����
+给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+请注意 ，必须在不复制数组的情况下原地对数组进行操作。
 
-ʾ�� 1:
-����: nums = [0,1,0,3,12]
-���: [1,3,12,0,0]
+示例 1:
+输入: nums = [0,1,0,3,12]
+输出: [1,3,12,0,0]
 
-ʾ�� 2:
-����: nums = [0]
-���: [0]
+示例 2:
+输入: nums = [0]
+输出: [0]
 
-��ʾ:
+提示:
 1 <= nums.length <= 104
--2��31�η� <= nums[i] <= 2��31�η� - 1
+-2的31次方 <= nums[i] <= 2的31次方 - 1
 
-���ף����ܾ���������ɵĲ���������
+进阶：你能尽量减少完成的操作次数吗？
 */
 void Top100Liked::Solution::moveZeroes(vector<int>& nums, bool isMyOwn)
 {
@@ -223,21 +223,21 @@ void Top100Liked::Solution::moveZeroes(vector<int>& nums, bool isMyOwn)
 }
 
 /*
-����һ������Ϊ n ���������� height ���� n �����ߣ��� i ���ߵ������˵��� (i, 0) �� (i, height[i]) ��
-�ҳ����е������ߣ�ʹ�������� x �Ṳͬ���ɵ�����������������ˮ��
-�����������Դ�������ˮ����
-˵�����㲻����б������
+给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
+找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
+返回容器可以储存的最大水量。
+说明：你不能倾斜容器。
 
-ʾ�� 1��
-���룺[1,8,6,2,5,4,8,3,7]
-�����49
-���ͣ�ͼ�д�ֱ�ߴ����������� [1,8,6,2,5,4,8,3,7]���ڴ�����£������ܹ�����ˮ����ʾΪ��ɫ���֣������ֵΪ 49��
+示例 1：
+输入：[1,8,6,2,5,4,8,3,7]
+输出：49
+解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。
 
-ʾ�� 2��
-���룺height = [1,1]
-�����1
+示例 2：
+输入：height = [1,1]
+输出：1
 
-��ʾ��
+提示：
 n == height.length
 2 <= n <= 105
 0 <= height[i] <= 104
@@ -280,30 +280,30 @@ int Top100Liked::Solution::maxArea(vector<int>& height, bool isMyOwn)
 }
 
 /*
-����һ���������� nums ���ж��Ƿ������Ԫ�� [nums[i], nums[j], nums[k]] ���� i != j��i != k �� j != k ��ͬʱ������ nums[i] + nums[j] + nums[k] == 0 �����㷵�����к�Ϊ 0 �Ҳ��ظ�����Ԫ�顣
-ע�⣺���в����԰����ظ�����Ԫ�顣
+给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请你返回所有和为 0 且不重复的三元组。
+注意：答案中不可以包含重复的三元组。
 
-ʾ�� 1��
-���룺nums = [-1,0,1,2,-1,-4]
-�����[[-1,-1,2],[-1,0,1]]
-���ͣ�
-nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 ��
-nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 ��
-nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 ��
-��ͬ����Ԫ���� [-1,0,1] �� [-1,-1,2] ��
-ע�⣬�����˳�����Ԫ���˳�򲢲���Ҫ��
+示例 1：
+输入：nums = [-1,0,1,2,-1,-4]
+输出：[[-1,-1,2],[-1,0,1]]
+解释：
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
+不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
+注意，输出的顺序和三元组的顺序并不重要。
 
-ʾ�� 2��
-���룺nums = [0,1,1]
-�����[]
-���ͣ�Ψһ���ܵ���Ԫ��Ͳ�Ϊ 0 ��
+示例 2：
+输入：nums = [0,1,1]
+输出：[]
+解释：唯一可能的三元组和不为 0 。
 
-ʾ�� 3��
-���룺nums = [0,0,0]
-�����[[0,0,0]]
-���ͣ�Ψһ���ܵ���Ԫ���Ϊ 0 ��
+示例 3：
+输入：nums = [0,0,0]
+输出：[[0,0,0]]
+解释：唯一可能的三元组和为 0 。
 
-��ʾ��
+提示：
 3 <= nums.length <= 3000
 -105 <= nums[i] <= 105
 */
@@ -315,32 +315,32 @@ vector<vector<int>> Top100Liked::Solution::threeSum(vector<int>& nums, bool isMy
 		sort(nums.begin(), nums.end());
 		vector<vector<int>> ans;
 
-		//ѭ������ߵ�һ����
+		//循环最左边第一个数
 		for (int first = 0; first < n; ++first)
 		{
-			// ʹ����һ�ε�������һ�β�ͬ
+			// 使得下一次的数和上一次不同
 			if (first > 0 && nums[first] == nums[first - 1])
 			{
 				continue;
 			}
-			// �����������������ұ�
+			// 将第三个数放在最右边
 			int third = n - 1;
-			// a+b+c=0 ת���� b+c=-a;
+			// a+b+c=0 转换成 b+c=-a;
 			int target = -nums[first];
-			// ѭ����ߵڶ��������ڵ�һ��������
+			// 循环左边第二个数，在第一个数后面
 			for (int second = first + 1; second < n; ++second)
 			{
-				// ʹ����һ�ε�������һ�β�ͬ
+				// 使得下一次的数和上一次不同
 				if (second > first + 1 && nums[second] == nums[second - 1])
 				{
 					continue;
 				}
-				// �õ�������һֱ�ڵڶ������ұ�
+				// 让第三个数一直在第二个数右边
 				while (second < third && nums[second] + nums[third] > target)
 				{
 					--third;
 				}
-				//���غϺ�ͱ�������b��c �˳���һ��ѭ��
+				//当重合后就遍历完了b，c 退出第一次循环
 				if (second == third)
 				{
 					break;
@@ -357,27 +357,27 @@ vector<vector<int>> Top100Liked::Solution::threeSum(vector<int>& nums, bool isMy
 		int n = nums.size();
 		sort(nums.begin(), nums.end());
 		vector<vector<int>> ans;
-		// ö�� a
+		// 枚举 a
 		for (int first = 0; first < n; ++first) {
-			// ��Ҫ����һ��ö�ٵ�������ͬ
+			// 需要和上一次枚举的数不相同
 			if (first > 0 && nums[first] == nums[first - 1]) {
 				continue;
 			}
-			// c ��Ӧ��ָ���ʼָ����������Ҷ�
+			// c 对应的指针初始指向数组的最右端
 			int third = n - 1;
 			int target = -nums[first];
-			// ö�� b
+			// 枚举 b
 			for (int second = first + 1; second < n; ++second) {
-				// ��Ҫ����һ��ö�ٵ�������ͬ
+				// 需要和上一次枚举的数不相同
 				if (second > first + 1 && nums[second] == nums[second - 1]) {
 					continue;
 				}
-				// ��Ҫ��֤ b ��ָ���� c ��ָ������
+				// 需要保证 b 的指针在 c 的指针的左侧
 				while (second < third && nums[second] + nums[third] > target) {
 					--third;
 				}
-				// ���ָ���غϣ����� b ����������
-				// �Ͳ��������� a+b+c=0 ���� b<c �� c �ˣ������˳�ѭ��
+				// 如果指针重合，随着 b 后续的增加
+				// 就不会有满足 a+b+c=0 并且 b<c 的 c 了，可以退出循环
 				if (second == third) {
 					break;
 				}
@@ -391,18 +391,18 @@ vector<vector<int>> Top100Liked::Solution::threeSum(vector<int>& nums, bool isMy
 }
 
 /*
-���� n ���Ǹ�������ʾÿ������Ϊ 1 �����ӵĸ߶�ͼ�����㰴�����е����ӣ�����֮���ܽӶ�����ˮ��
+给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
 
-ʾ�� 1��
-���룺height = [0,1,0,2,1,0,1,3,2,1,2,1]
-�����6
-���ͣ������������� [0,1,0,2,1,0,1,3,2,1,2,1] ��ʾ�ĸ߶�ͼ������������£����Խ� 6 ����λ����ˮ����ɫ���ֱ�ʾ��ˮ����
+示例 1：
+输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
+输出：6
+解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。
 
-ʾ�� 2��
-���룺height = [4,2,0,3,2,5]
-�����9
+示例 2：
+输入：height = [4,2,0,3,2,5]
+输出：9
 
-��ʾ��
+提示：
 n == height.length
 1 <= n <= 2 * 104
 0 <= height[i] <= 105
@@ -453,27 +453,27 @@ int Top100Liked::Solution::trap(vector<int>& height, bool isMyOwn)
 }
 
 /*
-����һ���ַ��� s �������ҳ����в������ظ��ַ��� ��Ӵ��ĳ��ȡ�
+给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串的长度。
 
-ʾ�� 1:
-����: s = "abcabcbb"
-���: 3
-����: ��Ϊ���ظ��ַ�����Ӵ��� "abc"�������䳤��Ϊ 3��
+示例 1:
+输入: s = "abcabcbb"
+输出: 3
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
-ʾ�� 2:
-����: s = "bbbbb"
-���: 1
-����: ��Ϊ���ظ��ַ�����Ӵ��� "b"�������䳤��Ϊ 1��
+示例 2:
+输入: s = "bbbbb"
+输出: 1
+解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
 
-ʾ�� 3:
-����: s = "pwwkew"
-���: 3
-����: ��Ϊ���ظ��ַ�����Ӵ��� "wke"�������䳤��Ϊ 3��
-	 ��ע�⣬��Ĵ𰸱����� �Ӵ� �ĳ��ȣ�"pwke" ��һ�������У������Ӵ���
+示例 3:
+输入: s = "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+	 请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
 
-��ʾ��
+提示：
 0 <= s.length <= 5 * 104
-s ��Ӣ����ĸ�����֡����źͿո����
+s 由英文字母、数字、符号和空格组成
 */
 int Top100Liked::Solution::lengthOfLongestSubstring(string s, bool isMyOwn)
 {
@@ -501,23 +501,23 @@ int Top100Liked::Solution::lengthOfLongestSubstring(string s, bool isMyOwn)
 		return maxLength;
 	}
 	else {
-		// ��ϣ���ϣ���¼ÿ���ַ��Ƿ���ֹ�
+		// 哈希集合，记录每个字符是否出现过
 		unordered_set<char> occ;
 		int n = s.size();
-		// ��ָ�룬��ʼֵΪ -1���൱���������ַ�������߽����࣬��û�п�ʼ�ƶ�
+		// 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
 		int rk = -1, ans = 0;
-		// ö����ָ���λ�ã���ʼֵ���Եر�ʾΪ -1
+		// 枚举左指针的位置，初始值隐性地表示为 -1
 		for (int i = 0; i < n; ++i) {
 			if (i != 0) {
-				// ��ָ�������ƶ�һ���Ƴ�һ���ַ�
+				// 左指针向右移动一格，移除一个字符
 				occ.erase(s[i - 1]);
 			}
 			while (rk + 1 < n && !occ.count(s[rk + 1])) {
-				// ���ϵ��ƶ���ָ��
+				// 不断地移动右指针
 				occ.insert(s[rk + 1]);
 				++rk;
 			}
-			// �� i �� rk ���ַ���һ�����������ظ��ַ��Ӵ�
+			// 第 i 到 rk 个字符是一个极长的无重复字符子串
 			ans = max(ans, rk - i + 1);
 		}
 		return ans;
@@ -525,29 +525,29 @@ int Top100Liked::Solution::lengthOfLongestSubstring(string s, bool isMyOwn)
 }
 
 /*
-���������ַ��� s �� p���ҵ� s ������ p ����λ�ʵ��Ӵ���������Щ�Ӵ�����ʼ�����������Ǵ������˳��
+给定两个字符串 s 和 p，找到 s 中所有 p 的异位词的子串，返回这些子串的起始索引。不考虑答案输出的顺序。
 
-ʾ�� 1:
-����: s = "cbaebabacd", p = "abc"
-���: [0,6]
-����:
-��ʼ�������� 0 ���Ӵ��� "cba", ���� "abc" ����λ�ʡ�
-��ʼ�������� 6 ���Ӵ��� "bac", ���� "abc" ����λ�ʡ�
+示例 1:
+输入: s = "cbaebabacd", p = "abc"
+输出: [0,6]
+解释:
+起始索引等于 0 的子串是 "cba", 它是 "abc" 的异位词。
+起始索引等于 6 的子串是 "bac", 它是 "abc" 的异位词。
 
-ʾ�� 2:
-����: s = "abab", p = "ab"
-���: [0,1,2]
-����:
-��ʼ�������� 0 ���Ӵ��� "ab", ���� "ab" ����λ�ʡ�
-��ʼ�������� 1 ���Ӵ��� "ba", ���� "ab" ����λ�ʡ�
-��ʼ�������� 2 ���Ӵ��� "ab", ���� "ab" ����λ�ʡ�
+示例 2:
+输入: s = "abab", p = "ab"
+输出: [0,1,2]
+解释:
+起始索引等于 0 的子串是 "ab", 它是 "ab" 的异位词。
+起始索引等于 1 的子串是 "ba", 它是 "ab" 的异位词。
+起始索引等于 2 的子串是 "ab", 它是 "ab" 的异位词。
 
-��ʾ:
+提示:
 1 <= s.length, p.length <= 3 * 104
-s �� p ������Сд��ĸ
+s 和 p 仅包含小写字母
 
-��ע:
-differ��ʾ�ж��ٸ���ĸ��ͬ��ֻҪcount�д���һ����Ϊ0����ĸ���������һ����ͬ�����ڳ���һֱΪsLen-pLen����������Ƴ���ĸ��ԭ����Ϊ1���������1��Ϊ0������ͬ��1��ͬ�����Ҳ��������ĸΪ-1��������Ϊ0����ͬ��1��ͬ��differ��һҲ������ԭ����
+备注:
+differ表示有多少个字母不同，只要count中存在一个不为0的字母，则就是有一个不同，窗口长度一直为sLen-pLen，如果左侧待移除字母的原计数为1，则计数减1则为0，即不同减1，同理，右侧待加入字母为-1，则加入后为0，不同减1，同理differ加一也是类似原理。
 */
 vector<int> Top100Liked::Solution::findAnagrams(string s, string p, bool isMyOwn)
 {
@@ -610,18 +610,18 @@ vector<int> Top100Liked::Solution::findAnagrams(string s, string p, bool isMyOwn
 			ans.emplace_back(0);
 		}
 		for (int i = 0; i < sLen - pLen; ++i) {
-			if (count[s[i] - 'a'] == 1) {  // ��������ĸ s[i] ���������ַ��� p �е������Ӳ�ͬ�����ͬ
+			if (count[s[i] - 'a'] == 1) {  // 窗口中字母 s[i] 的数量与字符串 p 中的数量从不同变得相同
 				--differ;
 			}
-			else if (count[s[i] - 'a'] == 0) {  // ��������ĸ s[i] ���������ַ��� p �е���������ͬ��ò�ͬ
+			else if (count[s[i] - 'a'] == 0) {  // 窗口中字母 s[i] 的数量与字符串 p 中的数量从相同变得不同
 				++differ;
 			}
 			--count[s[i] - 'a'];
 
-			if (count[s[i + pLen] - 'a'] == -1) {  // ��������ĸ s[i+pLen] ���������ַ��� p �е������Ӳ�ͬ�����ͬ
+			if (count[s[i + pLen] - 'a'] == -1) {  // 窗口中字母 s[i+pLen] 的数量与字符串 p 中的数量从不同变得相同
 				--differ;
 			}
-			else if (count[s[i + pLen] - 'a'] == 0) {  // ��������ĸ s[i+pLen] ���������ַ��� p �е���������ͬ��ò�ͬ
+			else if (count[s[i + pLen] - 'a'] == 0) {  // 窗口中字母 s[i+pLen] 的数量与字符串 p 中的数量从相同变得不同
 				++differ;
 			}
 			++count[s[i + pLen] - 'a'];
@@ -635,24 +635,24 @@ vector<int> Top100Liked::Solution::findAnagrams(string s, string p, bool isMyOwn
 }
 
 /*
-����һ���������� nums ��һ������ k ������ͳ�Ʋ����� �������к�Ϊ k ��������ĸ��� ��
-��������������Ԫ�ص������ǿ����С�
+给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。
+子数组是数组中元素的连续非空序列。
 
-ʾ�� 1��
-���룺nums = [1,1,1], k = 2
-�����2
+示例 1：
+输入：nums = [1,1,1], k = 2
+输出：2
 
-ʾ�� 2��
-���룺nums = [1,2,3], k = 3
-�����2
+示例 2：
+输入：nums = [1,2,3], k = 3
+输出：2
 
-��ʾ��
+提示：
 1 <= nums.length <= 2 * 104
 -1000 <= nums[i] <= 1000
 -107 <= k <= 107
 
-��ע:
-����preΪǰ���ۼ��ܺͣ�ͨ��sum[i-j]��λ���м��Ϊk�Ļ�����ôsum[0-j]-sum[0,i]����sum[i-j]��Ҳ����kֵ��Ȼ���0-n�������ۼ�ֵ�����ֹ�������ֻҪ��ֵΪk����ǰ���sum[0-i]���ֹ����ɡ�
+备注:
+其中pre为前面累计总和，通过sum[i-j]的位置中间和为k的话，那么sum[0-j]-sum[0,i]就是sum[i-j]，也就是k值，然后从0-n的所有累计值都出现过，所以只要差值为k，且前面的sum[0-i]出现过即可。
 */
 int Top100Liked::Solution::subarraySum(vector<int>& nums, int k, bool isMyOwn)
 {
@@ -703,14 +703,14 @@ int Top100Liked::Solution::subarraySum(vector<int>& nums, int k, bool isMyOwn)
 }
 
 /*
-����һ���������� nums����һ����СΪ k �Ļ������ڴ������������ƶ�����������Ҳࡣ��ֻ���Կ����ڻ��������ڵ� k �����֡���������ÿ��ֻ�����ƶ�һλ��
-���� ���������е����ֵ ��
+给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+返回 滑动窗口中的最大值 。
 
-ʾ�� 1��
-���룺nums = [1,3,-1,-3,5,3,6,7], k = 3
-�����[3,3,5,5,6,7]
-���ͣ�
-�������ڵ�λ��                ���ֵ
+示例 1：
+输入：nums = [1,3,-1,-3,5,3,6,7], k = 3
+输出：[3,3,5,5,6,7]
+解释：
+滑动窗口的位置                最大值
 ---------------               -----
 [1  3  -1] -3  5  3  6  7       3
  1 [3  -1  -3] 5  3  6  7       3
@@ -719,27 +719,27 @@ int Top100Liked::Solution::subarraySum(vector<int>& nums, int k, bool isMyOwn)
  1  3  -1  -3 [5  3  6] 7       6
  1  3  -1  -3  5 [3  6  7]      7
 
-ʾ�� 2��
-���룺nums = [1], k = 1
-�����[1]
+示例 2：
+输入：nums = [1], k = 1
+输出：[1]
 
-ʾ�� 3��
-���룺nums = [1,3,1,2,0,5], k = 3
-�����[3,3,2,5]
+示例 3：
+输入：nums = [1,3,1,2,0,5], k = 3
+输出：[3,3,2,5]
 
-ʾ�� 4��
-���룺nums = [-7,-8,7,5,7,1,6,0], k = 4
-�����[7,7,7,7,7]
+示例 4：
+输入：nums = [-7,-8,7,5,7,1,6,0], k = 4
+输出：[7,7,7,7,7]
 
-��ʾ��
+提示：
 1 <= nums.length <= 105
 -104 <= nums[i] <= 104
 1 <= k <= nums.length
 
-��ע��
-��ԭ���Ǹ���k���ֶΣ��ȴ������ң�ÿ���ڳ����Ƚϣ��������ֵ������С����Ϊp��ͬ���������󣬳����Ƚ��������ֵ��Ҳ�Ǵ�С����Ϊs��
-���պ���k��С��ʱ����p���Ҳ��s����඼�����ֵ������Ϊk�ı���ʱ����������k���ȷ��飬��ô����Ҫ�Ƚ�p��Χ�����Ҳ�����ֵ��s��Χ�����������ֵ���õ����ֵ��
-ͬʱ��Ҫ���ǳ��Ȳ��Ǹպ�Ϊk�ı��������������ʼֵ[0]��[n-1]��ֵ����ʾ�������������˸�����Ŀ��ǡ�
+备注：
+其原理是根据k来分段，先从左往右，每组内持续比较，设置最大值，即从小到大，为p，同理从右往左，持续比较设置最大值，也是从小到大，为s。
+当刚好在k大小内时，则p最右侧和s最左侧都是最大值，当不为k的倍数时，则横跨两个k长度分组，那么就需要比较p范围内最右侧的最大值和s范围内最左侧的最大值，得到最大值。
+同时需要考虑长度不是刚好为k的倍数的情况，即初始值[0]的[n-1]的值，在示例方法中增加了该情况的考虑。
 */
 vector<int> Top100Liked::Solution::maxSlidingWindow(vector<int>& nums, int k, bool isMyOwn)
 {
@@ -798,35 +798,35 @@ bool check(unordered_map <char, int> ori, unordered_map <char, int> cnt) {
 	return true;
 }
 /*
-����һ���ַ��� s ��һ���ַ��� t ������ s �к��� t �����ַ�����С�Ӵ������ s �в����ں��� t �����ַ����Ӵ����򷵻ؿ��ַ��� "" ��
+给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。
 
-ע�⣺
-���� t ���ظ��ַ�������Ѱ�ҵ����ַ����и��ַ��������벻���� t �и��ַ�������
-��� s �д����������Ӵ������Ǳ�֤����Ψһ�Ĵ𰸡�
+注意：
+对于 t 中重复字符，我们寻找的子字符串中该字符数量必须不少于 t 中该字符数量。
+如果 s 中存在这样的子串，我们保证它是唯一的答案。
 
-ʾ�� 1��
-���룺s = "ADOBECODEBANC", t = "ABC"
-�����"BANC"
-���ͣ���С�����Ӵ� "BANC" ���������ַ��� t �� 'A'��'B' �� 'C'��
+示例 1：
+输入：s = "ADOBECODEBANC", t = "ABC"
+输出："BANC"
+解释：最小覆盖子串 "BANC" 包含来自字符串 t 的 'A'、'B' 和 'C'。
 
-ʾ�� 2��
-���룺s = "a", t = "a"
-�����"a"
-���ͣ������ַ��� s ����С�����Ӵ���
+示例 2：
+输入：s = "a", t = "a"
+输出："a"
+解释：整个字符串 s 是最小覆盖子串。
 
-ʾ�� 3:
-����: s = "a", t = "aa"
-���: ""
-����: t �������ַ� 'a' ��Ӧ������ s ���Ӵ��У�
-���û�з������������ַ��������ؿ��ַ�����
+示例 3:
+输入: s = "a", t = "aa"
+输出: ""
+解释: t 中两个字符 'a' 均应包含在 s 的子串中，
+因此没有符合条件的子字符串，返回空字符串。
 
-��ʾ��
+提示：
 m == s.length
 n == t.length
 1 <= m, n <= 105
-s �� t ��Ӣ����ĸ���
+s 和 t 由英文字母组成
 
-���ף��������һ���� o(m+n) ʱ���ڽ����������㷨��
+进阶：你能设计一个在 o(m+n) 时间内解决此问题的算法吗？
 */
 string Top100Liked::Solution::minWindow(string s, string t, bool isMyOwn)
 {
@@ -908,27 +908,27 @@ Status get(vector<int>& a, int l, int r) {
 	return pushUp(lSub, rSub);
 }
 /*
-����һ���������� nums �������ҳ�һ���������͵����������飨���������ٰ���һ��Ԫ�أ������������͡�
-�������������е�һ���������֡�
+给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+子数组是数组中的一个连续部分。
 
-ʾ�� 1��
-���룺nums = [-2,1,-3,4,-1,2,1,-5,4]
-�����6
-���ͣ����������� [4,-1,2,1] �ĺ����Ϊ 6 ��
+示例 1：
+输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出：6
+解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。
 
-ʾ�� 2��
-���룺nums = [1]
-�����1
+示例 2：
+输入：nums = [1]
+输出：1
 
-ʾ�� 3��
-���룺nums = [5,4,-1,7,8]
-�����23
+示例 3：
+输入：nums = [5,4,-1,7,8]
+输出：23
 
-��ʾ��
+提示：
 1 <= nums.length <= 105
 -104 <= nums[i] <= 104
 
-���ף�������Ѿ�ʵ�ָ��Ӷ�Ϊ O(n) �Ľⷨ������ʹ�ø�Ϊ����� ���η� ��⡣
+进阶：如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的 分治法 求解。
 */
 int Top100Liked::Solution::maxSubArray(vector<int>& nums, bool isMyOwn)
 {
@@ -949,33 +949,33 @@ int Top100Liked::Solution::maxSubArray(vector<int>& nums, bool isMyOwn)
 }
 
 /*
-������ intervals ��ʾ���ɸ�����ļ��ϣ����е�������Ϊ intervals[i] = [starti, endi] ������ϲ������ص������䣬������ һ�����ص����������飬��������ǡ�ø��������е��������� ��
+以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
 
-ʾ�� 1��
-���룺intervals = [[1,3],[2,6],[8,10],[15,18]]
-�����[[1,6],[8,10],[15,18]]
-���ͣ����� [1,3] �� [2,6] �ص�, �����Ǻϲ�Ϊ [1,6].
+示例 1：
+输入：intervals = [[1,3],[2,6],[8,10],[15,18]]
+输出：[[1,6],[8,10],[15,18]]
+解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
 
-ʾ�� 2��
-���룺intervals = [[1,4],[4,5]]
-�����[[1,5]]
-���ͣ����� [1,4] �� [4,5] �ɱ���Ϊ�ص����䡣
+示例 2：
+输入：intervals = [[1,4],[4,5]]
+输出：[[1,5]]
+解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。
 
-ʾ�� 3��
-���룺intervals = [[2,5],[1,5]]
-�����[[1,5]]
+示例 3：
+输入：intervals = [[2,5],[1,5]]
+输出：[[1,5]]
 
-ʾ�� 4��
-���룺intervals = [[1,5],[2,3]]
-�����[[1,5]]
+示例 4：
+输入：intervals = [[1,5],[2,3]]
+输出：[[1,5]]
 
-��ʾ��
+提示：
 1 <= intervals.length <= 104
 intervals[i].length == 2
 0 <= starti <= endi <= 104
 
-��ע��
-�����Ѿ��������򣬴�С����ıȽ���Լ򵥴�����������Ҫ��������������Ƿ����β�������Ҳ༴�ɡ�
+备注：
+数据已经经过排序，大小方面的比较相对简单处理，仅仅需要考虑新数据左侧是否大于尾部数据右侧即可。
 */
 vector<vector<int>> Top100Liked::Solution::merge(vector<vector<int>>& intervals, bool isMyOwn)
 {
@@ -1015,35 +1015,35 @@ vector<vector<int>> Top100Liked::Solution::merge(vector<vector<int>>& intervals,
 }
 
 /*
-����һ���������� nums���������е�Ԫ��������ת k ��λ�ã����� k �ǷǸ�����
+给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。
 
-ʾ�� 1:
-����: nums = [1,2,3,4,5,6,7], k = 3
-���: [5,6,7,1,2,3,4]
-����:
-������ת 1 ��: [7,1,2,3,4,5,6]
-������ת 2 ��: [6,7,1,2,3,4,5]
-������ת 3 ��: [5,6,7,1,2,3,4]
+示例 1:
+输入: nums = [1,2,3,4,5,6,7], k = 3
+输出: [5,6,7,1,2,3,4]
+解释:
+向右轮转 1 步: [7,1,2,3,4,5,6]
+向右轮转 2 步: [6,7,1,2,3,4,5]
+向右轮转 3 步: [5,6,7,1,2,3,4]
 
-ʾ�� 2:
-���룺nums = [-1,-100,3,99], k = 2
-�����[3,99,-1,-100]
-����:
-������ת 1 ��: [99,-1,-100,3]
-������ת 2 ��: [3,99,-1,-100]
+示例 2:
+输入：nums = [-1,-100,3,99], k = 2
+输出：[3,99,-1,-100]
+解释:
+向右轮转 1 步: [99,-1,-100,3]
+向右轮转 2 步: [3,99,-1,-100]
 
-��ʾ��
+提示：
 1 <= nums.length <= 105
--2��31�η� <= nums[i] <= 2��31�η� - 1
+-2的31次方 <= nums[i] <= 2的31次方 - 1
 0 <= k <= 105
 
-���ף�
-�������������Ľ�������������� ���� ��ͬ�ķ������Խ��������⡣
-�����ʹ�ÿռ临�Ӷ�Ϊ O(1) �� ԭ�� �㷨������������
+进阶：
+尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。
+你可以使用空间复杂度为 O(1) 的 原地 算法解决这个问题吗？
 
-��ע��
-��Ϊ�ǰ���˳����Ҳ��Ƴ��������ӵ���࣬�ȳ��Ƚ����൱�ڷ�ת��һ�Ρ�
-���Կ����Ƚ��з�ת���������ȳ��Ƚ�������k������˳������Ƴ��������ݵ�˳���λ�ã��ٽ�ʣ�����ݷ�ת��ԭ˳���λ�ü��ɡ�
+备注：
+因为是按照顺序从右侧移出，并添加到左侧，先出先进，相当于翻转了一次。
+所以可以先进行翻转，再由于先出先进，交换k步长的顺序，完成移出部分数据的顺序和位置，再将剩余数据翻转回原顺序和位置即可。
 */
 void Top100Liked::Solution::rotate(vector<int>& nums, int k, bool isMyOwn)
 {
@@ -1052,7 +1052,7 @@ void Top100Liked::Solution::rotate(vector<int>& nums, int k, bool isMyOwn)
 		int sweap = 0;
 		// 1,2,3,4,5,6,7
 		int num = nums.size();
-		// ��ȥ�����ѭ���ƶ�����
+		// 除去多余的循环移动步数
 		k = k % num;
 		// 7 6 5 4 3 2 1
 		for (int i = 0; i < (num / 2); i++)
@@ -1083,10 +1083,10 @@ void Top100Liked::Solution::rotate(vector<int>& nums, int k, bool isMyOwn)
 		reverse(nums.begin(), nums.begin() + k);
 		reverse(nums.begin() + k, nums.end());
 
-		// ��״�滻���ݲ��Ƽ�
+		// 环状替换，暂不推荐
 		//int n = nums.size();
 		//k = k % n;
-		//// �������Լ��, (48, 18) => 6, (-24, 0) => 24
+		//// 计算最大公约数, (48, 18) => 6, (-24, 0) => 24
 		//int count = gcd(k, n);
 		//for (int start = 0; start < count; ++start) {
 		//	int current = start;
@@ -1101,27 +1101,27 @@ void Top100Liked::Solution::rotate(vector<int>& nums, int k, bool isMyOwn)
 }
 
 /*
-����һ���������� nums������ ���� answer ������ answer[i] ���� nums �г� nums[i] ֮�������Ԫ�صĳ˻� ��
-��Ŀ���� ��֤ ���� nums֮������Ԫ�ص�ȫ��ǰ׺Ԫ�غͺ�׺�ĳ˻�����  32 λ ������Χ�ڡ�
-�� ��Ҫʹ�ó��������� O(n) ʱ�临�Ӷ�����ɴ��⡣
+给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。
+题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。
+请 不要使用除法，且在 O(n) 时间复杂度内完成此题。
 
-ʾ�� 1:
-����: nums = [1,2,3,4]
-���: [24,12,8,6]
+示例 1:
+输入: nums = [1,2,3,4]
+输出: [24,12,8,6]
 
-ʾ�� 2:
-����: nums = [-1,1,0,-3,3]
-���: [0,0,9,0,0]
+示例 2:
+输入: nums = [-1,1,0,-3,3]
+输出: [0,0,9,0,0]
 
-��ʾ��
+提示：
 2 <= nums.length <= 105
 -30 <= nums[i] <= 30
-���� ��֤ ���� answer[i] ��  32 λ ������Χ��
+输入 保证 数组 answer[i] 在  32 位 整数范围内
 
-���ף�������� O(1) �Ķ���ռ临�Ӷ�����������Ŀ�𣿣� ���ڶԿռ临�Ӷȷ�����Ŀ�ģ�������� ������Ϊ ����ռ䡣��
+进阶：你可以在 O(1) 的额外空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组 不被视为 额外空间。）
 
-��ע��
-ʱ�临�Ӷ� O(2n) ���Խ��ƿ��� O(n)������ѭ����������Ҳ���Է�������
+备注：
+时间复杂度 O(2n) 可以近似看成 O(n)，所以循环常量次数也可以符合题意
 */
 vector<int> Top100Liked::Solution::productExceptSelf(vector<int>& nums, bool isMyOwn)
 {
@@ -1148,20 +1148,20 @@ vector<int> Top100Liked::Solution::productExceptSelf(vector<int>& nums, bool isM
 		int length = nums.size();
 		vector<int> answer(length);
 
-		// answer[i] ��ʾ���� i �������Ԫ�صĳ˻�
-		// ��Ϊ����Ϊ '0' ��Ԫ�����û��Ԫ�أ� ���� answer[0] = 1
+		// answer[i] 表示索引 i 左侧所有元素的乘积
+		// 因为索引为 '0' 的元素左侧没有元素， 所以 answer[0] = 1
 		answer[0] = 1;
 		for (int i = 1; i < length; i++) {
 			answer[i] = nums[i - 1] * answer[i - 1];
 		}
 
-		// R Ϊ�Ҳ�����Ԫ�صĳ˻�
-		// �տ�ʼ�ұ�û��Ԫ�أ����� R = 1
+		// R 为右侧所有元素的乘积
+		// 刚开始右边没有元素，所以 R = 1
 		int R = 1;
 		for (int i = length - 1; i >= 0; i--) {
-			// �������� i����ߵĳ˻�Ϊ answer[i]���ұߵĳ˻�Ϊ R
+			// 对于索引 i，左边的乘积为 answer[i]，右边的乘积为 R
 			answer[i] = answer[i] * R;
-			// R ��Ҫ�����ұ����еĳ˻������Լ�����һ�����ʱ��Ҫ����ǰֵ�˵� R ��
+			// R 需要包含右边所有的乘积，所以计算下一个结果时需要将当前值乘到 R 上
 			R *= nums[i];
 		}
 		return answer;
@@ -1169,35 +1169,35 @@ vector<int> Top100Liked::Solution::productExceptSelf(vector<int>& nums, bool isM
 }
 
 /*
-����һ��δ������������� nums �������ҳ�����û�г��ֵ���С����������
-����ʵ��ʱ�临�Ӷ�Ϊ O(n) ����ֻʹ�ó����������ռ�Ľ��������
+给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
+请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
 
-ʾ�� 1��
-���룺nums = [1,2,0]
-�����3
-���ͣ���Χ [1,2] �е����ֶ��������С�
+示例 1：
+输入：nums = [1,2,0]
+输出：3
+解释：范围 [1,2] 中的数字都在数组中。
 
-ʾ�� 2��
-���룺nums = [3,4,-1,1]
-�����2
-���ͣ�1 �������У��� 2 û�С�
+示例 2：
+输入：nums = [3,4,-1,1]
+输出：2
+解释：1 在数组中，但 2 没有。
 
-ʾ�� 3��
-���룺nums = [7,8,9,11,12]
-�����1
-���ͣ���С������ 1 û�г��֡�
+示例 3：
+输入：nums = [7,8,9,11,12]
+输出：1
+解释：最小的正数 1 没有出现。
 
-��ʾ��
+提示：
 1 <= nums.length <= 105
--2��31�η� <= nums[i] <= 2��31�η� - 1
+-2的31次方 <= nums[i] <= 2的31次方 - 1
 
-��ע��
-�ٷ�ʾ����ʽ�ǲ��ù�ϣ�����߼�ʵ�֣���ϣ������Ҳ��һ�����飬��i���ڽǱ�i-1��λ�á�
-���� 3 4 -1 1
-��3���ڽǱ�2�Ϻ�-1 4 3 1 ������Ҫ�ٴμ��-1�������������������ٵ���
-��4���ڽǱ�3�Ϻ�-1 1 3 4 �������ٴμ����1�������������Ҳ�������λ�ã��ٴε���
-��1���ڽǱ�0�Ϻ�1 -1 3 4 �������ٴμ����-1�������������������ٵ���
-����3 4 ��������λ�ã������ٵ���
+备注：
+官方示例方式是采用哈希表的逻辑实现，哈希表本身也是一个数组，将i放在角标i-1的位置。
+比如 3 4 -1 1
+将3放在角标2上后，-1 4 3 1 ，还需要再次检测-1，不符合条件，不用再调整
+将4放在角标3上后，-1 1 3 4 ，还需再次检测下1，符合条件，且不在自身位置，再次调整
+将1放在角标0上后，1 -1 3 4 ，还需再次检测下-1，不符合条件，不用再调整
+后续3 4 都在自身位置，无需再调整
 */
 int Top100Liked::Solution::firstMissingPositive(vector<int>& nums, bool isMyOwn)
 {
@@ -1232,26 +1232,26 @@ int Top100Liked::Solution::firstMissingPositive(vector<int>& nums, bool isMyOwn)
 }
 
 /*
-����һ�� m x n �ľ������һ��Ԫ��Ϊ 0 �����������к��е�����Ԫ�ض���Ϊ 0 ����ʹ�� ԭ�� �㷨��
+给定一个 m x n 的矩阵，如果一个元素为 0 ，则将其所在行和列的所有元素都设为 0 。请使用 原地 算法。
 
-ʾ�� 1��
-���룺matrix = [[1,1,1],[1,0,1],[1,1,1]]
-�����[[1,0,1],[0,0,0],[1,0,1]]
+示例 1：
+输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
+输出：[[1,0,1],[0,0,0],[1,0,1]]
 
-ʾ�� 2��
-���룺matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
-�����[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+示例 2：
+输入：matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+输出：[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
 
-��ʾ��
+提示：
 m == matrix.length
 n == matrix[0].length
 1 <= m, n <= 200
--2��31�η� <= matrix[i][j] <= 2��31�η� - 1
+-2的31次方 <= matrix[i][j] <= 2的31次方 - 1
 
-���ף�
-һ��ֱ�۵Ľ��������ʹ��  O(mn) �Ķ���ռ䣬���Ⲣ����һ���õĽ��������
-һ���򵥵ĸĽ�������ʹ�� O(m + n) �Ķ���ռ䣬������Ȼ������õĽ��������
-�������һ����ʹ�ó����ռ�Ľ��������
+进阶：
+一个直观的解决方案是使用  O(mn) 的额外空间，但这并不是一个好的解决方案。
+一个简单的改进方案是使用 O(m + n) 的额外空间，但这仍然不是最好的解决方案。
+你能想出一个仅使用常量空间的解决方案吗？
 */
 void Top100Liked::Solution::setZeroes(vector<vector<int>>& matrix, bool isMyOwn)
 {
@@ -1311,24 +1311,24 @@ void Top100Liked::Solution::setZeroes(vector<vector<int>>& matrix, bool isMyOwn)
 }
 
 /*
-����һ�� m �� n �еľ��� matrix ���밴�� ˳ʱ������˳�� �����ؾ����е�����Ԫ�ء�
+给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
 
-ʾ�� 1��
-���룺matrix = [[1,2,3],[4,5,6],[7,8,9]]
-�����[1,2,3,6,9,8,7,4,5]
+示例 1：
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[1,2,3,6,9,8,7,4,5]
 
-ʾ�� 2��
-���룺matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
-�����[1,2,3,4,8,12,11,10,9,5,6,7]
+示例 2：
+输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+输出：[1,2,3,4,8,12,11,10,9,5,6,7]
 
-��ʾ��
+提示：
 m == matrix.length
 n == matrix[i].length
 1 <= m, n <= 10
 -100 <= matrix[i][j] <= 100
 
-��ע��
-����������������ǽ��ÿ���ƶ���ǽ�ڶ�������С��
+备注：
+将螺旋矩阵看作四面墙，每次移动后，墙壁都往内缩小。
 */
 vector<int> Top100Liked::Solution::spiralOrder(vector<vector<int>>& matrix, bool isMyOwn)
 {
@@ -1338,7 +1338,7 @@ vector<int> Top100Liked::Solution::spiralOrder(vector<vector<int>>& matrix, bool
 		vector<int> result;
 		int start = 0, top = 0, left = 0, right = n - 1, bottom = m - 1;
 		while (true) {
-			// �㼶����
+			// 层级下移
 			for (int i = left; i <= right; i++) {
 				result.push_back(matrix[top][i]);
 				start++;
@@ -1346,7 +1346,7 @@ vector<int> Top100Liked::Solution::spiralOrder(vector<vector<int>>& matrix, bool
 			top++;
 			if (start >= m * n) { break; }
 
-			// �㼶����
+			// 层级左移
 			for (int i = top; i <= bottom; i++) {
 				result.push_back(matrix[i][right]);
 				start++;
@@ -1354,7 +1354,7 @@ vector<int> Top100Liked::Solution::spiralOrder(vector<vector<int>>& matrix, bool
 			right--;
 			if (start >= m * n) { break; }
 
-			// �㼶����
+			// 层级上移
 			for (int i = right; i >= left; i--) {
 				result.push_back(matrix[bottom][i]);
 				start++;
@@ -1362,7 +1362,7 @@ vector<int> Top100Liked::Solution::spiralOrder(vector<vector<int>>& matrix, bool
 			bottom--;
 			if (start >= m * n) { break; }
 
-			// �㼶����
+			// 层级右移
 			for (int i = bottom; i >= top; i--) {
 				result.push_back(matrix[i][left]);
 				start++;
@@ -1405,24 +1405,24 @@ vector<int> Top100Liked::Solution::spiralOrder(vector<vector<int>>& matrix, bool
 }
 
 /*
-����һ�� n �� n �Ķ�ά���� matrix ��ʾһ��ͼ�����㽫ͼ��˳ʱ����ת 90 �ȡ�
-������� ԭ�� ��תͼ������ζ������Ҫֱ���޸�����Ķ�ά�����벻Ҫ ʹ����һ����������תͼ��
+给定一个 n × n 的二维矩阵 matrix 表示一个图像。请你将图像顺时针旋转 90 度。
+你必须在 原地 旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要 使用另一个矩阵来旋转图像。
 
-ʾ�� 1��
-���룺matrix = [[1,2,3],[4,5,6],[7,8,9]]
-�����[[7,4,1],[8,5,2],[9,6,3]]
+示例 1：
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[[7,4,1],[8,5,2],[9,6,3]]
 
-ʾ�� 2��
-���룺matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
-�����[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+示例 2：
+输入：matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+输出：[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
 
-��ʾ��
+提示：
 n == matrix.length == matrix[i].length
 1 <= n <= 20
 -1000 <= matrix[i][j] <= 1000
 
-��ע��
-�ٷ�ʾ������ת������ת�������ȴ�ֱ��ת�����Խ��߷�ת��
+备注：
+官方示例将旋转看作翻转处理，先垂直翻转再主对角线翻转。
 */
 void Top100Liked::Solution::rotate(vector<vector<int>>& matrix, bool isMyOwn)
 {
@@ -1431,7 +1431,7 @@ void Top100Liked::Solution::rotate(vector<vector<int>>& matrix, bool isMyOwn)
 		int circle = num / 2;
 		num--;
 		bool doubleFlag = (num % 2 == 0);
-		// ��ʽѭ������
+		// 链式循环交换
 		for (int i = 0; i < circle; i++)
 		{
 			int temp = 0;
@@ -1466,13 +1466,13 @@ void Top100Liked::Solution::rotate(vector<vector<int>>& matrix, bool isMyOwn)
 	}
 	else {
 		int n = matrix.size();
-		// ˮƽ��ת
+		// 水平翻转
 		for (int i = 0; i < n / 2; ++i) {
 			for (int j = 0; j < n; ++j) {
 				swap(matrix[i][j], matrix[n - i - 1][j]);
 			}
 		}
-		// ���Խ��߷�ת
+		// 主对角线翻转
 		for (int i = 0; i < n; ++i) {
 			for (int j = 0; j < i; ++j) {
 				swap(matrix[i][j], matrix[j][i]);
@@ -1482,30 +1482,30 @@ void Top100Liked::Solution::rotate(vector<vector<int>>& matrix, bool isMyOwn)
 }
 
 /*
-��дһ����Ч���㷨������ m x n ���� matrix �е�һ��Ŀ��ֵ target ���þ�������������ԣ�
-ÿ�е�Ԫ�ش������������С�
-ÿ�е�Ԫ�ش��ϵ����������С�
+编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target 。该矩阵具有以下特性：
+每行的元素从左到右升序排列。
+每列的元素从上到下升序排列。
 
-ʾ�� 1��
-���룺matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
-�����true
+示例 1：
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
+输出：true
 
-ʾ�� 2��
-���룺matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
-�����false
+示例 2：
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
+输出：false
 
-��ʾ��
+提示：
 m == matrix.length
 n == matrix[i].length
 1 <= n, m <= 300
--10��9�η� <= matrix[i][j] <= 10��9�η�
-ÿ�е�����Ԫ�ش�������������
-ÿ�е�����Ԫ�ش��ϵ�����������
--10��9�η� <= target <= 10��9�η�
+-10的9次方 <= matrix[i][j] <= 10的9次方
+每行的所有元素从左到右升序排列
+每列的所有元素从上到下升序排列
+-10的9次方 <= target <= 10的9次方
 
-��ע��
-�ٷ�����һ��ʼ���Ǵӵ�һ�����Ŀ�ʼ�Ƚϣ������Ǵ� 0��0 ��ʼ��
-���ڶ��Ǵ�С�����˳�򣬹ʵ�left--�󣬲�����Ҫ��������һ������left++���������Ϊ[top][left]����target����[top+1][left]Ҳ�ض�����target
+备注：
+官方答案是一开始就是从第一行最大的开始比较，并不是从 0，0 开始。
+由于都是从小到大的顺序，故当left--后，并不需要考虑在下一层会出现left++的情况，因为[top][left]大于target，故[top+1][left]也必定大于target
 */
 bool Top100Liked::Solution::searchMatrix(vector<vector<int>>& matrix, int target, bool isMyOwn)
 {
@@ -1548,66 +1548,66 @@ bool Top100Liked::Solution::searchMatrix(vector<vector<int>>& matrix, int target
 }
 
 /*
-����������������ͷ�ڵ� headA �� headB �������ҳ������������������ཻ����ʼ�ڵ㡣������������������ཻ�ڵ㣬���� null ��
+给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。
 
-ͼʾ���������ڽڵ� c1 ��ʼ�ཻ��
+图示两个链表在节点 c1 开始相交：
 A:    a1-a2-c1-c2-c3
 B: b1-b2-b3-c1-c2-c3
 
-��Ŀ���� ��֤ ������ʽ�ṹ�в����ڻ���
-ע�⣬�������ؽ������������ ������ԭʼ�ṹ ��
-�Զ������⣺
-����ϵͳ ���������£�����Ƶĳ��� ������ �����룩��
-intersectVal - �ཻ����ʼ�ڵ��ֵ������������ཻ�ڵ㣬��һֵΪ 0
-listA - ��һ������
-listB - �ڶ�������
-skipA - �� listA �У���ͷ�ڵ㿪ʼ����������ڵ�Ľڵ���
-skipB - �� listB �У���ͷ�ڵ㿪ʼ����������ڵ�Ľڵ���
-����ϵͳ��������Щ���봴����ʽ���ݽṹ����������ͷ�ڵ� headA �� headB ���ݸ���ĳ�����������ܹ���ȷ�����ཻ�ڵ㣬��ô��Ľ���������� ������ȷ�� ��
+题目数据 保证 整个链式结构中不存在环。
+注意，函数返回结果后，链表必须 保持其原始结构 。
+自定义评测：
+评测系统 的输入如下（你设计的程序 不适用 此输入）：
+intersectVal - 相交的起始节点的值。如果不存在相交节点，这一值为 0
+listA - 第一个链表
+listB - 第二个链表
+skipA - 在 listA 中（从头节点开始）跳到交叉节点的节点数
+skipB - 在 listB 中（从头节点开始）跳到交叉节点的节点数
+评测系统将根据这些输入创建链式数据结构，并将两个头节点 headA 和 headB 传递给你的程序。如果程序能够正确返回相交节点，那么你的解决方案将被 视作正确答案 。
 
-ʾ�� 1��
+示例 1：
 A:   4-1-8-4-5
 B: 5-6-1-8-4-5
-���룺intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
-�����Intersected at '8'
-���ͣ��ཻ�ڵ��ֵΪ 8 ��ע�⣬������������ཻ����Ϊ 0����
-�Ӹ��Եı�ͷ��ʼ�������� A Ϊ [4,1,8,4,5]������ B Ϊ [5,6,1,8,4,5]��
-�� A �У��ཻ�ڵ�ǰ�� 2 ���ڵ㣻�� B �У��ཻ�ڵ�ǰ�� 3 ���ڵ㡣
-�� ��ע���ཻ�ڵ��ֵ��Ϊ 1����Ϊ������ A ������ B ֮��ֵΪ 1 �Ľڵ� (A �еڶ����ڵ�� B �е������ڵ�) �ǲ�ͬ�Ľڵ㡣���仰˵���������ڴ���ָ��������ͬ��λ�ã������� A ������ B ��ֵΪ 8 �Ľڵ� (A �е������ڵ㣬B �е��ĸ��ڵ�) ���ڴ���ָ����ͬ��λ�á�
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+输出：Intersected at '8'
+解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
+在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+— 请注意相交节点的值不为 1，因为在链表 A 和链表 B 之中值为 1 的节点 (A 中第二个节点和 B 中第三个节点) 是不同的节点。换句话说，它们在内存中指向两个不同的位置，而链表 A 和链表 B 中值为 8 的节点 (A 中第三个节点，B 中第四个节点) 在内存中指向相同的位置。
 
 
-ʾ�� 2��
+示例 2：
 A: 1-9-1-2-4
 B:     3-2-4
-���룺intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
-�����Intersected at '2'
-���ͣ��ཻ�ڵ��ֵΪ 2 ��ע�⣬������������ཻ����Ϊ 0����
-�Ӹ��Եı�ͷ��ʼ�������� A Ϊ [1,9,1,2,4]������ B Ϊ [3,2,4]��
-�� A �У��ཻ�ڵ�ǰ�� 3 ���ڵ㣻�� B �У��ཻ�ڵ�ǰ�� 1 ���ڵ㡣
+输入：intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+输出：Intersected at '2'
+解释：相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [1,9,1,2,4]，链表 B 为 [3,2,4]。
+在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
 
-ʾ�� 3��
+示例 3：
 A: 2-6-4
 B: 1-5
-���룺intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
-�����No intersection
-���ͣ��Ӹ��Եı�ͷ��ʼ�������� A Ϊ [2,6,4]������ B Ϊ [1,5]��
-�����������������ཻ������ intersectVal ����Ϊ 0���� skipA �� skipB ����������ֵ��
-�������������ཻ����˷��� null ��
+输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+输出：No intersection
+解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。
+由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
+这两个链表不相交，因此返回 null 。
 
-��ʾ��
-listA �нڵ���ĿΪ m
-listB �нڵ���ĿΪ n
-1 <= m, n <= 3 * 10��4�η�
-1 <= Node.val <= 10��5�η�
+提示：
+listA 中节点数目为 m
+listB 中节点数目为 n
+1 <= m, n <= 3 * 10的4次方
+1 <= Node.val <= 10的5次方
 0 <= skipA <= m
 0 <= skipB <= n
-��� listA �� listB û�н��㣬intersectVal Ϊ 0
-��� listA �� listB �н��㣬intersectVal == listA[skipA] == listB[skipB]
+如果 listA 和 listB 没有交点，intersectVal 为 0
+如果 listA 和 listB 有交点，intersectVal == listA[skipA] == listB[skipB]
 
-���ף����ܷ����һ��ʱ�临�Ӷ� O(m + n) ������ O(1) �ڴ�Ľ��������
+进阶：你能否设计一个时间复杂度 O(m + n) 、仅用 O(1) 内存的解决方案？
 
-��ע��
-������ֱ�ӱȽ�ֵ�����ǱȽ� �ڴ��еĵ�ַ
+备注：
+并不是直接比较值，而是比较 内存中的地址
 */
 Top100Liked::Solution::ListNode* Top100Liked::Solution::getIntersectionNode(ListNode* headA, ListNode* headB, bool isMyOwn)
 {
@@ -1655,28 +1655,28 @@ Top100Liked::Solution::ListNode* Top100Liked::Solution::getIntersectionNode(List
 }
 
 /*
-���㵥������ͷ�ڵ� head �����㷴ת�����������ط�ת���������
+给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
 
-ʾ�� 1��
-���룺head = [1,2,3,4,5]
-�����[5,4,3,2,1]
+示例 1：
+输入：head = [1,2,3,4,5]
+输出：[5,4,3,2,1]
 
-ʾ�� 2��
-���룺head = [1,2]
-�����[2,1]
+示例 2：
+输入：head = [1,2]
+输出：[2,1]
 
-ʾ�� 3��
-���룺head = []
-�����[]
+示例 3：
+输入：head = []
+输出：[]
 
-��ʾ��
-�����нڵ����Ŀ��Χ�� [0, 5000]
+提示：
+链表中节点的数目范围是 [0, 5000]
 -5000 <= Node.val <= 5000
 
-���ף���������ѡ�õ�����ݹ鷽ʽ��ɷ�ת�����ܷ������ַ����������⣿
+进阶：链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
 
-��ע��
-�ٷ�������û�����´����½ڵ��ڵݹ����ӻ��������ǵݹ��βָ��ͷ�����ӣ���ͬʱ��ϴ�ͷָ��β������
+备注：
+官方方法并没有重新创建新节点在递归添加回来，而是递归从尾指向开头的链接，并同时打断从头指向尾的链接
 */
 Top100Liked::Solution::ListNode2* Top100Liked::Solution::reverseList(ListNode2* head, bool isMyOwn)
 {
@@ -1709,42 +1709,42 @@ Top100Liked::Solution::ListNode2* Top100Liked::Solution::reverseList(ListNode2* 
 }
 
 void backtrack(vector<vector<int>>& res, vector<int>& output, int first, int len) {
-	// ��������������
+	// 所有数都填完了
 	if (first == len) {
 		res.emplace_back(output);
 		return;
 	}
 	for (int i = first; i < len; ++i) {
-		// ��̬ά������
+		// 动态维护数组
 		swap(output[i], output[first]);
-		// �����ݹ�����һ����
+		// 继续递归填下一个数
 		backtrack(res, output, first + 1, len);
-		// ��������
+		// 撤销操作
 		swap(output[i], output[first]);
 	}
 }
 /*
-����һ�������ظ����ֵ����� nums �������� ���п��ܵ�ȫ���� ������� ������˳�� ���ش𰸡�
+给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
 
-ʾ�� 1��
-���룺nums = [1,2,3]
-�����[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+示例 1：
+输入：nums = [1,2,3]
+输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 
-ʾ�� 2��
-���룺nums = [0,1]
-�����[[0,1],[1,0]]
+示例 2：
+输入：nums = [0,1]
+输出：[[0,1],[1,0]]
 
-ʾ�� 3��
-���룺nums = [1]
-�����[[1]]
+示例 3：
+输入：nums = [1]
+输出：[[1]]
 
-��ʾ��
+提示：
 1 <= nums.length <= 6
 -10 <= nums[i] <= 10
-nums �е��������� ������ͬ
+nums 中的所有整数 互不相同
 
-��ע��
-�ٷ�������дһ���ݹ麯��������һ�ν���ѭ��ʱ��fitst��n�ֿ��ܣ�������n�ε���һλ������ݹ��ͬ���ڶ�λ��n-1�ֿ��ܣ���ɵݹ���轫���ݸ�ԭ������Ӱ������������ݵ����
+备注：
+官方采用另写一个递归函数，当第一次进入循环时，fitst有n种可能，即交换n次到第一位，进入递归后，同理第二位有n-1种可能，完成递归后，需将数据复原，避免影响放置其他数据的情况
 */
 vector<vector<int>> Top100Liked::Solution::permute(vector<int>& nums, bool isMyOwn)
 {
@@ -1777,15 +1777,15 @@ vector<vector<int>> Top100Liked::Solution::permute(vector<int>& nums, bool isMyO
 }
 
 void myLoop(vector<string>& res, string output, int l, int r, int n) {
-	// ������С��n��������������������
+	// 左括号小于n并且右括号少于左括号
 	if (r == 0 && l == 0) {
 		res.push_back(output);
 	}
-	// �ȷ�������
+	// 先放左括号
 	if (l > 0) {
 		myLoop(res, output + "(", l - 1, r, n);
 	}
-	// ��������
+	// 后补右括号
 	if (r > l) {
 		myLoop(res, output + ")", l, r - 1, n);
 	}
@@ -1807,21 +1807,21 @@ void backtrack(vector<string>& ans, string& cur, int open, int close, int n) {
 	}
 }
 /*
-���� n �����������ŵĶ������������һ�������������ܹ��������п��ܵĲ��� ��Ч�� ������ϡ�
+数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
 
-ʾ�� 1��
-���룺n = 3
-�����["((()))","(()())","(())()","()(())","()()()"]
+示例 1：
+输入：n = 3
+输出：["((()))","(()())","(())()","()(())","()()()"]
 
-ʾ�� 2��
-���룺n = 1
-�����["()"]
+示例 2：
+输入：n = 1
+输出：["()"]
 
-��ʾ��
+提示：
 1 <= n <= 8
 
-��ע��
-�ٷ�����˼·һ�£�ֻ�Ǵ�n��ʼ������˴�0��ʼ���������ݲ�����
+备注：
+官方大致思路一致，只是从n开始，变成了从0开始，方法三暂不考虑
 */
 vector<string> Top100Liked::Solution::generateParenthesis(int n, bool isMyOwn)
 {

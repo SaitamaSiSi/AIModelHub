@@ -1,12 +1,12 @@
-#pragma once
+ï»¿#pragma once
 
 #include <set>
 #include <vector>
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
-#include <algorithm> // °üº¬ std::sort
-// #include <numeric> // °üº¬ std::gcd
+#include <algorithm> // åŒ…å« std::sort
+// #include <numeric> // åŒ…å« std::gcd
 
 using namespace std;
 
@@ -16,10 +16,10 @@ namespace Top100Liked
 	{
 	public:
 
-#pragma region ¹şÏ£
+#pragma region å“ˆå¸Œ
 
 		/// <summary>
-		/// Á½ÊıÖ®ºÍ
+		/// ä¸¤æ•°ä¹‹å’Œ
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="target"></param>
@@ -28,7 +28,7 @@ namespace Top100Liked
 		vector<int> twoSum(vector<int>& nums, int target, bool isMyOwn = false);
 
 		/// <summary>
-		/// ×ÖÄ¸ÒìÎ»´Ê·Ö×é
+		/// å­—æ¯å¼‚ä½è¯åˆ†ç»„
 		/// </summary>
 		/// <param name="strs"></param>
 		/// <param name="isMyOwn"></param>
@@ -36,7 +36,7 @@ namespace Top100Liked
 		vector<vector<string>> groupAnagrams(vector<string>& strs, bool isMyOwn = false);
 
 		/// <summary>
-		/// ×î³¤Á¬ĞøĞòÁĞ
+		/// æœ€é•¿è¿ç»­åºåˆ—
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="isMyOwn"></param>
@@ -45,17 +45,17 @@ namespace Top100Liked
 
 #pragma endregion
 
-#pragma region Ë«Ö¸Õë
+#pragma region åŒæŒ‡é’ˆ
 
 		/// <summary>
-		/// ÒÆ¶¯Áã
+		/// ç§»åŠ¨é›¶
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="isMyOwn"></param>
 		void moveZeroes(vector<int>& nums, bool isMyOwn = false);
 
 		/// <summary>
-		/// Ê¢×î¶àË®µÄÈİÆ÷
+		/// ç››æœ€å¤šæ°´çš„å®¹å™¨
 		/// </summary>
 		/// <param name="height"></param>
 		/// <param name="isMyOwn"></param>
@@ -63,7 +63,7 @@ namespace Top100Liked
 		int maxArea(vector<int>& height, bool isMyOwn = false);
 
 		/// <summary>
-		/// ÈıÊıÖ®ºÍ£¨Î´Íê³É£©
+		/// ä¸‰æ•°ä¹‹å’Œï¼ˆæœªå®Œæˆï¼‰
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="isMyOwn"></param>
@@ -71,7 +71,7 @@ namespace Top100Liked
 		vector<vector<int>> threeSum(vector<int>& nums, bool isMyOwn = false);
 
 		/// <summary>
-		/// ½ÓÓêË®
+		/// æ¥é›¨æ°´
 		/// </summary>
 		/// <param name="height"></param>
 		/// <param name="isMyOwn"></param>
@@ -81,10 +81,10 @@ namespace Top100Liked
 
 #pragma endregion
 
-#pragma region »¬¶¯´°¿Ú
+#pragma region æ»‘åŠ¨çª—å£
 
 		/// <summary>
-		/// ÎŞÖØ¸´×Ö·ûµÄ×î³¤×Ó´®
+		/// æ— é‡å¤å­—ç¬¦çš„æœ€é•¿å­ä¸²
 		/// </summary>
 		/// <param name="s"></param>
 		/// <param name="isMyOwn"></param>
@@ -92,7 +92,7 @@ namespace Top100Liked
 		int lengthOfLongestSubstring(string s, bool isMyOwn = false);
 
 		/// <summary>
-		/// ÕÒµ½×Ö·û´®ÖĞËùÓĞ×ÖÄ¸ÒìÎ»´Ê£¨³¬³öÊ±¼äÏŞÖÆ£©
+		/// æ‰¾åˆ°å­—ç¬¦ä¸²ä¸­æ‰€æœ‰å­—æ¯å¼‚ä½è¯ï¼ˆè¶…å‡ºæ—¶é—´é™åˆ¶ï¼‰
 		/// </summary>
 		/// <param name="s"></param>
 		/// <param name="p"></param>
@@ -102,10 +102,10 @@ namespace Top100Liked
 
 #pragma endregion
 
-#pragma region ×Ó´®
+#pragma region å­ä¸²
 
 		/// <summary>
-		/// ºÍÎª K µÄ×ÓÊı×é£¨Î´ÊµÏÖ£©
+		/// å’Œä¸º K çš„å­æ•°ç»„ï¼ˆæœªå®ç°ï¼‰
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="k"></param>
@@ -114,7 +114,7 @@ namespace Top100Liked
 		int subarraySum(vector<int>& nums, int k, bool isMyOwn = false);
 
 		/// <summary>
-		/// »¬¶¯´°¿Ú×î´óÖµ
+		/// æ»‘åŠ¨çª—å£æœ€å¤§å€¼
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="k"></param>
@@ -123,7 +123,7 @@ namespace Top100Liked
 		vector<int> maxSlidingWindow(vector<int>& nums, int k, bool isMyOwn = false);
 
 		/// <summary>
-		/// ×îĞ¡¸²¸Ç×Ó´®£¨²Î¿¼£©
+		/// æœ€å°è¦†ç›–å­ä¸²ï¼ˆå‚è€ƒï¼‰
 		/// </summary>
 		/// <param name="s"></param>
 		/// <param name="t"></param>
@@ -133,10 +133,10 @@ namespace Top100Liked
 
 #pragma endregion
 
-#pragma region ÆÕÍ¨Êı×é
+#pragma region æ™®é€šæ•°ç»„
 
 		/// <summary>
-		/// ×î´ó×ÓÊı×éºÍ
+		/// æœ€å¤§å­æ•°ç»„å’Œ
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="isMyOwn"></param>
@@ -144,7 +144,7 @@ namespace Top100Liked
 		int maxSubArray(vector<int>& nums, bool isMyOwn = false);
 
 		/// <summary>
-		/// ºÏ²¢Çø¼ä£¨²Î¿¼£©
+		/// åˆå¹¶åŒºé—´ï¼ˆå‚è€ƒï¼‰
 		/// </summary>
 		/// <param name="intervals"></param>
 		/// <param name="isMyOwn"></param>
@@ -152,7 +152,7 @@ namespace Top100Liked
 		vector<vector<int>> merge(vector<vector<int>>& intervals, bool isMyOwn = false);
 
 		/// <summary>
-		/// ÂÖ×ªÊı×é
+		/// è½®è½¬æ•°ç»„
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="k"></param>
@@ -160,7 +160,7 @@ namespace Top100Liked
 		void rotate(vector<int>& nums, int k, bool isMyOwn = false);
 
 		/// <summary>
-		/// ³ı×ÔÉíÒÔÍâÊı×éµÄ³Ë»ı
+		/// é™¤è‡ªèº«ä»¥å¤–æ•°ç»„çš„ä¹˜ç§¯
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="isMyOwn"></param>
@@ -168,7 +168,7 @@ namespace Top100Liked
 		vector<int> productExceptSelf(vector<int>& nums, bool isMyOwn = false);
 
 		/// <summary>
-		/// È±Ê§µÄµÚÒ»¸öÕıÊı
+		/// ç¼ºå¤±çš„ç¬¬ä¸€ä¸ªæ­£æ•°
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="isMyOwn"></param>
@@ -177,17 +177,17 @@ namespace Top100Liked
 
 #pragma endregion
 
-#pragma region ¾ØÕó
+#pragma region çŸ©é˜µ
 
 		/// <summary>
-		/// ¾ØÕóÖÃÁã
+		/// çŸ©é˜µç½®é›¶
 		/// </summary>
 		/// <param name="matrix"></param>
 		/// <param name="isMyOwn"></param>
 		void setZeroes(vector<vector<int>>& matrix, bool isMyOwn = false);
 
 		/// <summary>
-		/// ÂİĞı¾ØÕó
+		/// èºæ—‹çŸ©é˜µ
 		/// </summary>
 		/// <param name="matrix"></param>
 		/// <param name="isMyOwn"></param>
@@ -195,14 +195,14 @@ namespace Top100Liked
 		vector<int> spiralOrder(vector<vector<int>>& matrix, bool isMyOwn = false);
 
 		/// <summary>
-		/// Ğı×ªÍ¼Ïñ
+		/// æ—‹è½¬å›¾åƒ
 		/// </summary>
 		/// <param name="matrix"></param>
 		/// <param name="isMyOwn"></param>
 		void rotate(vector<vector<int>>& matrix, bool isMyOwn = false);
 
 		/// <summary>
-		/// ËÑË÷¶şÎ¬¾ØÕó II
+		/// æœç´¢äºŒç»´çŸ©é˜µ II
 		/// </summary>
 		/// <param name="matrix"></param>
 		/// <param name="target"></param>
@@ -212,7 +212,7 @@ namespace Top100Liked
 
 #pragma endregion
 
-#pragma region Á´±í
+#pragma region é“¾è¡¨
 
 		struct ListNode {
 			int val;
@@ -221,7 +221,7 @@ namespace Top100Liked
 
 		};
 		/// <summary>
-		/// 160 Ïà½»Á´±í£¨Î´ÊµÏÖ£©
+		/// 160 ç›¸äº¤é“¾è¡¨ï¼ˆæœªå®ç°ï¼‰
 		/// </summary>
 		/// <param name="headA"></param>
 		/// <param name="headB"></param>
@@ -237,7 +237,7 @@ namespace Top100Liked
 			ListNode2(int x, ListNode2* next) : val(x), next(next) {}
 		};
 		/// <summary>
-		/// ·´×ªÁ´±í
+		/// åè½¬é“¾è¡¨
 		/// </summary>
 		/// <param name="head"></param>
 		/// <param name="isMyOwn"></param>
@@ -246,10 +246,10 @@ namespace Top100Liked
 
 #pragma endregion
 
-#pragma region »ØËİ
+#pragma region å›æº¯
 
 		/// <summary>
-		/// È«ÅÅÁĞ
+		/// å…¨æ’åˆ—
 		/// </summary>
 		/// <param name="nums"></param>
 		/// <param name="isMyOwn"></param>
@@ -257,7 +257,7 @@ namespace Top100Liked
 		vector<vector<int>> permute(vector<int>& nums, bool isMyOwn = false);
 
 		/// <summary>
-		/// À¨ºÅÉú³É
+		/// æ‹¬å·ç”Ÿæˆ
 		/// </summary>
 		/// <param name="n"></param>
 		/// <param name="isMyOwn"></param>
