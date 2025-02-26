@@ -2,6 +2,7 @@
 
 #include <set>
 #include <map>
+#include <stack>
 #include <vector>
 #include <string>
 #include <unordered_set>
@@ -285,6 +286,14 @@ namespace Top100Liked
 		/// <param name="isMyOwn"></param>
 		/// <returns></returns>
 		string decodeString(string s, bool isMyOwn = false);
+
+		/// <summary>
+		/// 柱状图中最大的矩形（超时）
+		/// </summary>
+		/// <param name="heights"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		int largestRectangleArea(vector<int>& heights, bool isMyOwn = false);
 
 #pragma endregion
 

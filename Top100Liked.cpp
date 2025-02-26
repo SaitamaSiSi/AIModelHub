@@ -2056,6 +2056,83 @@ string Top100Liked::Solution::decodeString(string s, bool isMyOwn)
 	}
 }
 
+/*
+给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
+求在该柱状图中，能够勾勒出来的矩形的最大面积。
+
+示例 1:
+输入：heights = [2,1,5,6,2,3]
+输出：10
+解释：最大的矩形为图中红色区域，面积为 10
+
+示例 2：
+输入： heights = [2,4]
+输出： 4
+
+提示：
+1 <= heights.length <=10的5次方
+0 <= heights[i] <= 10的4次方
+
+备注：
+暴力破解法遇到数据量大且大都符合条件时会相当耗时。
+官方采用单调栈加常数优化的方式，该算法记录的是每个元素自己在其左右的最大面积。
+其大致思路为：遍历数组，看作一直呈递增趋势，每次记录自己左侧编号，若出现元素比栈顶元素小，那么栈顶元素开始记录其右侧编号，这样坐标的差值即为栈顶元素左右（以自己为最小值）的最大范围。
+每次弹出栈顶元素，可以看作得到了栈顶元素所在的最大面积值。
+Queue先进先出，Stack后进先出。
+Queue 适用于需要按顺序处理元素的场景，而 Stack 适用于按后进先出原则处理元素的场景。
+Queue 提供队首和队尾访问，而 Stack 只能访问栈顶元素。
+Queue 通常用于广度优先搜索（BFS），而 Stack 通常用于深度优先搜索（DFS）。
+*/
+int Top100Liked::Solution::largestRectangleArea(vector<int>& heights, bool isMyOwn)
+{
+	if (isMyOwn) {
+		int max = 0;
+		for (int i = 0; i < heights.size(); i++) {
+			int low = heights[i];
+			int tempMax = low;
+			int area = low;
+			for (int j = i; j < heights.size(); j++) {
+				if (i != j) {
+					if (heights[j] < low) {
+						low = heights[j];
+					}
+					area = (j - i + 1) * low;
+					tempMax = area > tempMax ? area : tempMax;
+				}
+			}
+			max = tempMax > max ? tempMax : max;
+		}
+		return max;
+	}
+	else {
+		// 假如数据为 2,1,5,6,2,3
+		int n = heights.size();
+		// left为当前角标元素，左侧最大值，right为右侧最大值。
+		vector<int> left(n), right(n, n);
+		stack<int> mono_stack;
+		for (int i = 0; i < n; ++i) {
+			// 当队列不为空、降低高度一直到呈递增或者队列为空
+			while (!mono_stack.empty() && heights[mono_stack.top()] >= heights[i]) {
+				// 弹出当前最大元素角标i，记录它的右侧角标
+				right[mono_stack.top()] = i;
+				// 将当前最高元素角标弹出
+				mono_stack.pop();
+			}
+			// 记录每个元素的的左角标，如果没有元素，那么自己为当前最低/最高元素
+			left[i] = (mono_stack.empty() ? -1 : mono_stack.top());
+			// 将当前元素放入栈顶
+			mono_stack.push(i);
+		}
+		int ans = 0;
+		// 得到 left为-1,-1,1,2,1,4，right为1,6,4,4,6,6
+		for (int i = 0; i < n; ++i) {
+			// 计算当前元素在左侧和右侧能够得到的最大面积（以自己为最小单位）
+			ans = max(ans, (right[i] - left[i] - 1) * heights[i]);
+		}
+		return ans;
+	}
+}
+
 
 
 
