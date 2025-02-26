@@ -276,6 +276,19 @@ namespace Top100Liked
 
 #pragma endregion
 
+#pragma region 栈
+
+		/// <summary>
+		/// 字符串解码
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="isMyOwn"></param>
+		/// <returns></returns>
+		string decodeString(string s, bool isMyOwn = false);
+
+#pragma endregion
+
+
 	};
 }
 
